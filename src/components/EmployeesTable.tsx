@@ -54,51 +54,53 @@ const EmployeesTable = ({ rows, setShowEmployeePopUpForm, showEmployeePopUpForm 
   } 
   
   return (
-    <table className={styles["employee-list-table"]}>
-      <thead>
-        <tr> 
-          <th></th>
-          <th>Employee ID</th>
-          <th>Name</th>
-          <th>Department</th>
-          <th>Contact</th>
-          <th>Hire Date</th>
-          <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {rows.map((employee) => {           
-          return (
-            <tr key={employee.id} onClick={() => onRowClick(employee)}>
-              <td className={styles["employee-photo-cell"]}>              
-                <EmployeePhoto employee={employee}></EmployeePhoto>
-              </td>
-              <td>{employee.id}</td>
-              <td>{employee.firstName} {employee.surname}</td> 
-              <td>{employee.department ? employee.department.name : ""}</td>
-              <td><div><div className={styles["employee-phone-number"]}>{employee.phoneNumber}</div><div className={styles["employee-email"]}><a href={`mailto:${employee.email}`}>{employee.email}</a></div></div></td>
-              <td>{employee.hireDate ? employee.hireDate : ""}</td> 
-              <td className={`row ${openMenu === employee.id ? 'active' : ''}`}> 
-                <div className={styles["employee-list-actions-menu-container"]}>  
-                  <button onClick={() => setOpenMenu(openMenu === employee.id ? null : employee.id)} className={styles["employee-list-actions-menu-button"]}>
-                    ⋮
-                  </button>
-                  {openMenu === employee.id && (
-                    <div ref={menuRef} className={styles["employee-list-actions-menu"]}>
-                      <div className={styles["employee-list-actions-menu-item"]} onClick={() => onEditClick()}>Edit</div>
-                      <div className={styles["employee-list-actions-menu-item"]} onClick={() => onDeleteClick(employee.id)}>Delete</div> 
-                    </div>
-                  )} 
-                </div>
-              </td> 
-            </tr>   
-          );
-        })}
-      </tbody>
+    <>
+      <table className={styles["employee-list-table"]}>
+        <thead>
+          <tr> 
+            <th></th>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Contact</th>
+            <th>Hire Date</th>
+            <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+          {rows.map((employee) => {           
+            return (
+              <tr key={employee.id} onClick={() => onRowClick(employee)}>
+                <td className={styles["employee-photo-cell"]}>              
+                  <EmployeePhoto employee={employee}></EmployeePhoto>
+                </td>
+                <td>{employee.id}</td>
+                <td>{employee.firstName} {employee.surname}</td> 
+                <td>{employee.department ? employee.department.name : ""}</td>
+                <td><div><div className={styles["employee-phone-number"]}>{employee.phoneNumber}</div><div className={styles["employee-email"]}><a href={`mailto:${employee.email}`}>{employee.email}</a></div></div></td>
+                <td>{employee.hireDate ? employee.hireDate : ""}</td> 
+                <td className={`row ${openMenu === employee.id ? 'active' : ''}`}> 
+                  <div className={styles["employee-list-actions-menu-container"]}>  
+                    <button onClick={() => setOpenMenu(openMenu === employee.id ? null : employee.id)} className={styles["employee-list-actions-menu-button"]}>
+                      ⋮
+                    </button>
+                    {openMenu === employee.id && (
+                      <div ref={menuRef} className={styles["employee-list-actions-menu"]}>
+                        <div className={styles["employee-list-actions-menu-item"]} onClick={() => onEditClick()}>Edit</div>
+                        <div className={styles["employee-list-actions-menu-item"]} onClick={() => onDeleteClick(employee.id)}>Delete</div> 
+                      </div>
+                    )} 
+                  </div>
+                </td> 
+              </tr>   
+            );
+          })}
+        </tbody> 
+      </table>    
       {showEmployeePopUpForm && (
         <EmployeePopupForm setShowEmployeePopUpForm={setShowEmployeePopUpForm} />
       )}
-    </table>    
+    </>
   )
 };
   

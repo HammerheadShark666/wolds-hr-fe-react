@@ -15,6 +15,7 @@ import EmployeesImport from './features/employee/pages/EmployeesImport';
 import Login from './features/authentication/login';
 import ProtectedRoute from './features/authentication/protectedRoute';
 import { useAppDispatch } from './app/hooks';
+import ToastClearOnRouteChange from './components/ToastClearOnRouteChange';
 
 function App() {
 
@@ -32,8 +33,9 @@ function App() {
   }, [dispatch]);
   
   return ( 
-      <GlobalErrorBoundary>
+      <GlobalErrorBoundary>        
         <BrowserRouter>
+          <ToastClearOnRouteChange />
           <Routes>         
             <Route path="/login" element={!token ? <Login /> : <Navigate to="/" />} />
             <Route element={<ProtectedRoute />}>

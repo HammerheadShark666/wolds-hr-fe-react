@@ -45,7 +45,9 @@ const employeeSlice = createSlice({
       })
       .addCase(addEmployee.rejected, (state, action) => {
         state.loading = false;
-        state.validationErrors = (action.payload as string[]) || ['Failed to add employee'];
+        if (JSON.stringify(state.validationErrors) !== JSON.stringify(action.payload)) {
+          state.validationErrors = (action.payload as string[]) || ['Failed to add employee'];
+        }
       })
       .addCase(updateEmployee.pending, (state) => {
         state.loading = true;

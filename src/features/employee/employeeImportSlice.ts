@@ -37,6 +37,9 @@ const employeeImportSlice = createSlice({
     setImportSearchPage(state, action: PayloadAction<number>) {
       state.page = action.payload;
     },
+    clearValidationError: (state) => {
+      state.error = null;
+    },
     clearImportedEmployees(state) {
       state.existingEmployees = [];
       state.employeesImported = [];
@@ -67,7 +70,7 @@ const employeeImportSlice = createSlice({
       })
       .addCase(importEmployees.rejected, (state, action) => {
         state.loading = false;
-        state.error = 'Failed to import employees';
+        state.error = action.payload as string;
       })  
       .addCase(searchImportedEmployees.pending, (state) => {
         state.loading = true;
@@ -88,5 +91,5 @@ const employeeImportSlice = createSlice({
   },
 });
 
-export const { clearImportedEmployees, setImportSearchDate, setImportSearchPage } = employeeImportSlice.actions
+export const { clearImportedEmployees, setImportSearchDate, setImportSearchPage, clearValidationError } = employeeImportSlice.actions
 export default employeeImportSlice.reducer;

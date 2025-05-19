@@ -1,19 +1,23 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+ 
 
-interface ErrorToastProps {
+interface Props {
   errors?: string[] | null; 
   error?: string | null;
+  onClear?: () => void;
 }
+ 
+export default function ToastErrors({ errors, error, onClear }: Props) { 
+  
+   useEffect(() => {
 
-const ErrorToasts: React.FC<ErrorToastProps> = ({ errors = [], error }) => {
-  React.useEffect(() => {
-    
-    if(error) { 
-      errors?.push(error)
-    }      
+    const allErrors = [...(errors || [])];
+    if (error) {
+      allErrors.push(error);
+    } 
 
-    errors?.forEach((error) => {
+   allErrors?.forEach((error) => {
       toast.error(error, {
         position: 'top-right',
         autoClose: false,  
@@ -22,11 +26,11 @@ const ErrorToasts: React.FC<ErrorToastProps> = ({ errors = [], error }) => {
         pauseOnHover: true,
         draggable: true,
         theme: 'colored',
+        toastId: error
       });
     });
-  }, [error, errors]);
+    onClear?.();
+  }, [error, errors, onClear]);
 
   return null;
 };
-
-export default ErrorToasts;

@@ -14,10 +14,10 @@ import InputEmail from "../../../../components/InputEmail";
 import InputDate from "../../../../components/InputDate";
 import InputSelect from "../../../../components/InputSelect";
 import styles from "../../../employee/css/Employee-form.module.css"; 
-import ErrorToast from "../../../../components/ErrorToasts";
 import { toast } from "react-toastify";
 import { Employee } from "../../../../types/employee";
 import { updateEmployeesState } from "../../employeeListSlice";
+import ToastErrors from "../../../../components/ErrorToasts";
   
 type FormData = z.infer<typeof employeeSchema>;
 
@@ -91,7 +91,7 @@ const EmployeeAddUpdate: React.FC<IProps> = ({ setShowEmployeePopUpForm }) => {
   };
  
   useEffect(() => {
-
+  
     function setFormData(selectedEmployee: Employee)
     {
       setValue('surname', selectedEmployee.surname);
@@ -112,7 +112,7 @@ const EmployeeAddUpdate: React.FC<IProps> = ({ setShowEmployeePopUpForm }) => {
       dispatch(clearValidationErrors());
     }
   }, [selectedEmployee, setValue, reset, dispatch]);
-
+ 
   const departments = useSelector((state: RootState) =>
     state.department.departments
   );
@@ -120,8 +120,7 @@ const EmployeeAddUpdate: React.FC<IProps> = ({ setShowEmployeePopUpForm }) => {
   return (     
     <>
       <h2 className={styles["h2"]}>{ selectedEmployee == null ? "Add Employee" : "Update Employee" }</h2>
-      {loading && <p>Adding employee...</p>}   
-      <ErrorToast errors={validationErrors} /> 
+      {loading && <p>Adding employee...</p>}      
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-container"> 
           <InputText name="surname"  control={control}  label="Surname"  error={errors.surname}></InputText>    
@@ -137,6 +136,7 @@ const EmployeeAddUpdate: React.FC<IProps> = ({ setShowEmployeePopUpForm }) => {
           </div>
         </div>  
       </form>    
+      <ToastErrors errors={validationErrors} onClear={() => dispatch(clearValidationErrors())} />
     </>    
   )
 } 

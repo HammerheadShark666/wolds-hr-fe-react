@@ -29,6 +29,9 @@ const authenticationSlice = createSlice({
         localStorage.removeItem('token');
         localStorage.removeItem('profile');
       },
+      clearValidationErrors: (state) => {
+        state.validationErrors = null;
+      },
       setCredentials: (state, action) => { 
         state.token = action.payload.token;
         state.profile = action.payload.profile; 
@@ -49,11 +52,11 @@ const authenticationSlice = createSlice({
         })
         .addCase(loginUser.rejected, (state, action) => {
           state.status = 'failed'; 
-          state.validationErrors = (action.payload as string[]) || ['Failed to add employee'];
+          state.validationErrors = (action.payload as string[]) || ['Failed to login'];
         });
     },
   });
   
-  export const { logout, setCredentials } = authenticationSlice.actions;
+  export const { logout, setCredentials, clearValidationErrors } = authenticationSlice.actions;
 
   export default authenticationSlice.reducer;

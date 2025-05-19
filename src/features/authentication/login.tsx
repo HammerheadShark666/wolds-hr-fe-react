@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../app/store';  
 import { loginUser } from './authenticationThunk';
 import { LoginRequest } from '../../types/loginRequest';
-import { logout } from './authenticationSlice';
+import { clearValidationErrors, logout } from './authenticationSlice';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { authenticationSchema } from './validation/authenticationSchema'; 
-import ErrorToast from "../../components/ErrorToasts";
+import { authenticationSchema } from './validation/authenticationSchema';
 import { z } from 'zod';
 import styles from "../authentication/css/Login.module.css"; 
+import ToastErrors from '../../components/ErrorToasts';
 
 type FormData = z.infer<typeof authenticationSchema>;
 
@@ -78,7 +78,7 @@ export default function LoginForm() {
         </div>  
       </div>  
       )}
-      <ErrorToast errors={validationErrors} /> 
+      <ToastErrors errors={validationErrors} onClear={() => dispatch(clearValidationErrors())} />
     </div>
   );
 }

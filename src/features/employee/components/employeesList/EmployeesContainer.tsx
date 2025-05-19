@@ -6,7 +6,6 @@ import { AppDispatch, RootState } from '../../../../app/store';
 import ToolBar from './ToolBar'; 
 import { clearEmployees, setPage, setSearch } from '../../employeeListSlice'; 
 import { searchEmployeeRecords } from '../../employeeThunks';
-import ErrorToast from '../../../../components/ErrorToasts';  
 import Pagination from '../../../../components/Pagination';
 import EmployeesTable from '../../../../components/EmployeesTable';
 
@@ -33,7 +32,6 @@ const EmployeesContainer = () => {
 
   return (
     <div className="p-4">
-      <ErrorToast error={error} /> 
       <ToolBar onSearch={handleSearch} setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} />
       {loading ? 
         <p>Loading...</p> : 
