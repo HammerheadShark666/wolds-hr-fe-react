@@ -13,7 +13,7 @@ const EmployeesContainer = () => {
 
   const pageSize : number = 5;
   const dispatch = useDispatch<AppDispatch>();
-  const { employees, totalPages, totalEmployees, page, loading, keyword, error } = useSelector((state: RootState) => state.employeeList);
+  const { employees, totalPages, totalEmployees, page, loading, keyword } = useSelector((state: RootState) => state.employeeList);
   const [showEmployeePopUpForm, setShowEmployeePopUpForm] = useState(false);
  
   const handleSearch = (keyword: string) => { 
