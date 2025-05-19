@@ -60,12 +60,12 @@ export default function LoginForm() {
           <form onSubmit={handleSubmit(onSubmit)}>  
             <div className={styles["input-group"]}>
               <label htmlFor="email">Email:</label>
-              <input id="email" type="email" {...register("email")} />
+              <input id="email" autoComplete="email" type="email" {...register("email")} />
               {errors.email && <span className="error">{errors.email.message}</span>}             
             </div>
             <div className={styles["input-group"]}>
               <label htmlFor="password">Password:</label>
-              <input id="password" type="password" {...register("password")} />
+              <input id="password" autoComplete="current-password" type="password" {...register("password")} />
               {errors.password && <span className="error">{errors.password.message}</span>}              
             </div>
             <div className={styles["button-group"]}>
