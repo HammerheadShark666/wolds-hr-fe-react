@@ -1,0 +1,33 @@
+.header { 
+  align-items: center;
+  padding: 0.5rem; 
+  display: flex;
+  justify-content: space-between; 
+  background-color: rgba(11, 8, 118, 0.4);
+  margin: 0;
+  flex : 0 1; 
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;  
+} 
+  
+.title-header {
+  display: block; 
+}
+
+.title-header {
+  display: none!important;
+}
+ 
+@media (min-width: 768px) {
+
+  .title-header {
+    display: none!important;
+  }
+
+  .header {
+    justify-content: flex-end;
+  }
+}

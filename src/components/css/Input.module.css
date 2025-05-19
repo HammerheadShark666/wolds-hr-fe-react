@@ -1,0 +1,63 @@
+.h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+  
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.row-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  align-items: center; 
+}
+
+.label {
+  font-weight: normal;
+  margin-bottom: 0.25rem;
+  width: 125px;
+}
+
+.input {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.select {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 200px;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  margin-left: 125px;
+} 
+
+.date {
+  width: 70px;
+}
+
+.text {
+  width: 200px;
+}
+
+.dropdown {
+  width: 200px;
+}
+
+.email {
+  width: 225px;
+}

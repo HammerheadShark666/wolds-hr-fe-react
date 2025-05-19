@@ -1,0 +1,30 @@
+.h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+ 
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.popup-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.popup-form {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  min-width: 335px;
+}
