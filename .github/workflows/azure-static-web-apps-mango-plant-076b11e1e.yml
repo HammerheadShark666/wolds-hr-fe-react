@@ -19,6 +19,13 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Inject environment variables into env.js
+        run: |
+          echo "window.env = {" > public/env.js
+          echo "  REACT_APP_API_URL: '${{ secrets.REACT_APP_API_URL }}'," >> public/env.js
+          echo "  REACT_APP_AZURE_STORAGE_URL: '${{ secrets.REACT_APP_AZURE_STORAGE_URL }}'," >> public/env.js
+          echo "  REACT_APP_STORAGE_EMPLOYEES: '${{ secrets.REACT_APP_STORAGE_EMPLOYEES }}'" >> public/env.js
+          echo "};" >> public/env.js
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
