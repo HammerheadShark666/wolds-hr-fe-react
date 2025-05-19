@@ -22,7 +22,7 @@ const Sidebar: React.FC<IProps> = ({ isOpen, onClose }) => {
     dispatch(clearEmployees());
     dispatch(clearSelectedEmployee());
     
-    navigate('/login');
+    setTimeout(() => navigate('/login'), 100); 
   };
 
   return (
