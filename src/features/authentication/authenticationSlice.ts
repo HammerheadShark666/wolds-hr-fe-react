@@ -8,6 +8,7 @@ interface AuthenticationState {
   loading: boolean;
   error: string | null;
   validationErrors: string[] | null;
+  //hydrated: boolean;
 }
  
 const initialState: AuthenticationState = { 
@@ -16,7 +17,8 @@ const initialState: AuthenticationState = {
   status: 'idle',
   loading: false,
   error: null,
-  validationErrors: null
+  validationErrors: null,
+  //hydrated: false,
 };
    
 const authenticationSlice = createSlice({
@@ -35,6 +37,7 @@ const authenticationSlice = createSlice({
       setCredentials: (state, action) => { 
         state.token = action.payload.token;
         state.profile = action.payload.profile; 
+        //state.hydrated = true;
       }
     },
     extraReducers: (builder) => {

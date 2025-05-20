@@ -4,9 +4,7 @@ import { toast } from 'react-toastify';
 
 export default function ToastClearOnRouteChange() {
   const location = useLocation();
-  const navigationType = useNavigationType();
-
-  console.log('Mounted')
+  const navigationType = useNavigationType(); 
 
   useEffect(() => {
     if (navigationType !== 'POP') {

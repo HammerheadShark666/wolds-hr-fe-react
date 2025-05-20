@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useEffect } from 'react';
 import { setCredentials } from './features/authentication/authenticationSlice';
 import { ToastContainer } from 'react-toastify'; 
@@ -17,12 +16,14 @@ import ProtectedRoute from './features/authentication/protectedRoute';
 import { useAppDispatch } from './app/hooks';
 import ToastClearOnRouteChange from './components/ToastClearOnRouteChange';
 
+import { useSelector } from 'react-redux';
+
 function App() {
 
 
   const dispatch = useAppDispatch();
-  
-  const token = useSelector((state: any) => state.authentication.token);
+  //const { hydrated } = useSelector((state: any) => state.authentication);
+  //const token = useSelector((state: any) => state.authentication.token);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -31,13 +32,18 @@ function App() {
       dispatch(setCredentials({ token, profile }));
     }
   }, [dispatch]);
+
+  // if (!hydrated) {
+  //   return <div>Loading...</div>; // or a spinner
+  // }
   
   return ( 
       <GlobalErrorBoundary>        
         <BrowserRouter>
           <ToastClearOnRouteChange />
           <Routes>         
-            <Route path="/login" element={!token ? <Login /> : <Navigate to="/" />} />
+            {/* <Route path="/login" element={!isLoggedIn() ? <Login /> : <Navigate to="/" />} /> */}
+            <Route path="/login" element={<Login />} />
             <Route element={<ProtectedRoute />}>
               <Route element={<Layout />}>
                 <Route path="/" element={<Home />} />
@@ -47,7 +53,8 @@ function App() {
                 <Route path="/jobs" element={<Jobs />} />
               </Route>
             </Route> 
-            <Route path="*" element={<Navigate to={token ? "/" : "/login"} />} /> 
+            {/* <Route path="*" element={<Navigate to={token ? "/" : "/login"} />} />  */}
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
           <ToastContainer></ToastContainer> 
         </BrowserRouter>
