@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../app/store';  
 import { loginUser } from './authenticationThunk';
 import { LoginRequest } from '../../types/loginRequest';
-import { clearValidationErrors, logout } from './authenticationSlice';
+import { clearValidationErrors } from './authenticationSlice';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -10,11 +10,13 @@ import { authenticationSchema } from './validation/authenticationSchema';
 import { z } from 'zod';
 import styles from "../authentication/css/Login.module.css"; 
 import ToastErrors from '../../components/ErrorToasts';
+import { useNavigate } from 'react-router-dom';
 
 type FormData = z.infer<typeof authenticationSchema>;
 
 export default function LoginForm() {
  
+  const navigate = useNavigate(); 
   const dispatch: AppDispatch = useDispatch(); 
   const authentication = useSelector((state: RootState) => state.authentication);
   const { validationErrors } = useSelector((state: RootState) => state.authentication);
@@ -38,7 +40,8 @@ export default function LoginForm() {
     
     try {
       var resultAction = await dispatch(loginUser(populateLoginRequest(data)));
-      unwrapResult(resultAction);
+      unwrapResult(resultAction); 
+      navigate("/");
     }
     catch(error)
     {
@@ -47,13 +50,7 @@ export default function LoginForm() {
   }
  
   return (
-    <div>
-      {authentication.token ? (
-        <>
-          <p>You are logged in</p>
-          <button onClick={() => dispatch(logout())}>Logout</button>
-        </>
-      ) : (
+    <div> 
         <div className={styles["login-container"]}>
         <div className={styles["login-box"]}>
           <h2>Login</h2>
@@ -76,8 +73,7 @@ export default function LoginForm() {
             {authentication.error && <p style={{ color: 'red' }}>{authentication.error}</p>}         
           </form>
         </div>  
-      </div>  
-      )}
+      </div>   
       <ToastErrors errors={validationErrors} onClear={() => dispatch(clearValidationErrors())} />
     </div>
   );

@@ -103,11 +103,7 @@ export const importEmployees = createAsyncThunk('employee/import',
         headers: {
           'Content-Type': undefined
         }
-      }); 
-
-      //dispatch(employeeImported(response.data));
-
-      console.log(response.data)
+      });   
 
       return response.data; 
     } 
