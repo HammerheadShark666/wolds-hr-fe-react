@@ -4,8 +4,7 @@ import { Search } from 'lucide-react';
 import EmployeePopupForm from '../employeeForm/EmployeePopupForm';
 import { setSelectedEmployee } from '../../employeeSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../../app/store';
-//import { importEmployees } from '../../employeeThunks';
+import { AppDispatch, RootState } from '../../../../app/store'; 
 
 type Props = {
   onSearch: (keyword: string) => void;
@@ -26,28 +25,7 @@ const ToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: 
   const handleAddEmployeeClick = () => { 
     dispatch(setSelectedEmployee(null));
     setShowEmployeePopUpForm(true);
-  }
- 
-
- 
-  // const fileInputRef = useRef<HTMLInputElement>(null); 
-
-  // const handleImportEmployeesClick = () => {
-  //   fileInputRef.current?.click();
-  // }
-  
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    
-  //   const file = event.target.files?.[0];
-  //   if (file) {        
-  //     dispatch(importEmployees({file}));
-  //   }
-  // };
-
-
-
-
-
+  } 
 
   useEffect(() => {
     document.getElementById('search')?.focus();
@@ -69,14 +47,7 @@ const ToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: 
           <button onClick={handleSearchClick}><Search /></button>
         </div>
         <div className={styles["toolbar-buttons"]}>      
-          <button type="button" onClick={handleAddEmployeeClick}>Add New Employee</button>   
-          {/* <button type="button" onClick={handleImportEmployeesClick}>Import Employees</button>
-          <input
-              type="file"
-              ref={fileInputRef} 
-              onChange={handleFileChange}
-              style={{ display: 'none' }}
-            />    */}
+          <button type="button" onClick={handleAddEmployeeClick}>Add New Employee</button>    
         </div>
       </div>
       {showEmployeePopUpForm && <EmployeePopupForm setShowEmployeePopUpForm={setShowEmployeePopUpForm} />}

@@ -15,15 +15,10 @@ import Login from './features/authentication/login';
 import ProtectedRoute from './features/authentication/protectedRoute';
 import { useAppDispatch } from './app/hooks';
 import ToastClearOnRouteChange from './components/ToastClearOnRouteChange';
-
-import { useSelector } from 'react-redux';
-
+ 
 function App() {
-
-
-  const dispatch = useAppDispatch();
-  //const { hydrated } = useSelector((state: any) => state.authentication);
-  //const token = useSelector((state: any) => state.authentication.token);
+ 
+  const dispatch = useAppDispatch(); 
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -32,17 +27,12 @@ function App() {
       dispatch(setCredentials({ token, profile }));
     }
   }, [dispatch]);
-
-  // if (!hydrated) {
-  //   return <div>Loading...</div>; // or a spinner
-  // }
   
   return ( 
       <GlobalErrorBoundary>        
         <BrowserRouter>
           <ToastClearOnRouteChange />
-          <Routes>         
-            {/* <Route path="/login" element={!isLoggedIn() ? <Login /> : <Navigate to="/" />} /> */}
+          <Routes>          
             <Route path="/login" element={<Login />} />
             <Route element={<ProtectedRoute />}>
               <Route element={<Layout />}>
@@ -52,8 +42,7 @@ function App() {
                 <Route path="/employment" element={<Employment />} />
                 <Route path="/jobs" element={<Jobs />} />
               </Route>
-            </Route> 
-            {/* <Route path="*" element={<Navigate to={token ? "/" : "/login"} />} />  */}
+            </Route>  
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
           <ToastContainer></ToastContainer> 

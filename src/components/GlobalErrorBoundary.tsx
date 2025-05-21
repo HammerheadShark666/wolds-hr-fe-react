@@ -19,8 +19,7 @@ class GlobalErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    this.setState({ hasError: true, error });
-    // Optional: log error to an external service
+    this.setState({ hasError: true, error }); 
     console.error("Error caught by ErrorBoundary:", error, info);
   }
 

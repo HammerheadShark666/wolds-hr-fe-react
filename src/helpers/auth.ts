@@ -2,7 +2,6 @@ import { jwtDecode } from "jwt-decode";
 
 interface JwtPayload {
   exp: number;
-  // optionally: add more fields like email, name, roles, etc.
 }
 
 export const isLoggedIn = (): boolean => {

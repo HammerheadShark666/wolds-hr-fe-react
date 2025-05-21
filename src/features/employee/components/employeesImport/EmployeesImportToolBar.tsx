@@ -1,8 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import styles from "../../css/Employee-list-toolbar.module.css";
-// import { Search } from 'lucide-react';
-// import EmployeePopupForm from '../employeeForm/EmployeePopupForm';
-// import { setSelectedEmployee } from '../../employeeSlice';
+import styles from "../../css/Employee-list-toolbar.module.css"; 
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../app/store';
 import { importEmployees } from '../../employeeThunks';
@@ -14,24 +11,8 @@ type Props = {
 };
 
 const EmployeesImportToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: Props) => {
-
- // const { keyword } = useSelector((state: RootState) => state.employeeList);
-  const dispatch = useDispatch<AppDispatch>();
-
-
- // const [input, setInput] = useState(keyword);
-
-  // const handleSearchClick = () => {
-  //   onSearch(input);
-  // };
-
-  // const handleAddEmployeeClick = () => { 
-  //   dispatch(setSelectedEmployee(null));
-  //   setShowEmployeePopForm(true);
-  // }
  
-
- 
+  const dispatch = useDispatch<AppDispatch>(); 
   const fileInputRef = useRef<HTMLInputElement>(null); 
 
   const handleImportEmployeesClick = () => {
@@ -46,33 +27,15 @@ const EmployeesImportToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmploy
     }
     event.target.value = '';
   };
-
-
-
-
-
-
+   
   useEffect(() => {
     document.getElementById('search')?.focus();
   });
 
   return (
     <div className={styles["employee-list-header"]}>
-      <div className={styles["toolbar"]}>
-        {/* <div className={styles["search-bar"]}>
-          <input
-            id="search"
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSearchClick()}
-            className="border px-2 py-1 mr-2"
-            placeholder="Search..."
-          />
-          <button onClick={handleSearchClick}><Search /></button>
-        </div> */}
-        <div className={styles["toolbar-buttons"]}>      
-          {/* <button type="button" onClick={handleAddEmployeeClick}>Add New Employee</button>    */}
+      <div className={styles["toolbar"]}> 
+        <div className={styles["toolbar-buttons"]}>     
           <button type="button" onClick={handleImportEmployeesClick}>Import Employees</button>
           <input
               type="file"
@@ -81,8 +44,7 @@ const EmployeesImportToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmploy
               style={{ display: 'none' }}
             />   
         </div>
-      </div>
-      {/* {showEmployeePopForm && <EmployeePopupForm setShowEmployeePopForm={setShowEmployeePopForm} />} */}
+      </div> 
     </div>
   );
 };

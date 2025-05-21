@@ -50,13 +50,7 @@ export default function LoginForm() {
   }
  
   return (
-    <div>
-      {/* {authentication.token ? (
-        <>
-          <p>You are logged in</p>
-          <button onClick={() => dispatch(logout())}>Logout</button>
-        </>
-      ) : ( */}
+    <div> 
         <div className={styles["login-container"]}>
         <div className={styles["login-box"]}>
           <h2>Login</h2>
@@ -79,8 +73,7 @@ export default function LoginForm() {
             {authentication.error && <p style={{ color: 'red' }}>{authentication.error}</p>}         
           </form>
         </div>  
-      </div>  
-      {/* )} */}
+      </div>   
       <ToastErrors errors={validationErrors} onClear={() => dispatch(clearValidationErrors())} />
     </div>
   );

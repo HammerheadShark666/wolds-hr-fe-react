@@ -10,14 +10,9 @@ const ProtectedRoute = () => {
 
   if(!loggedIn) {
     store.dispatch(logout());
-  }
-  
-  // return isLoggedIn()
-  //   ? <Outlet /> 
-  //   : <Navigate to="/login" replace state={{ from: location }} />;
+  } 
 
- 
-return loggedIn
+  return loggedIn
     ? <Outlet /> 
     : <Navigate to="/login" replace state={{ from: location }} />;
 
