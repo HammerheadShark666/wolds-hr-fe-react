@@ -81,7 +81,7 @@ const employeeSearchSlice = createSlice({
         state.totalEmployees = action.payload.totalEmployees;
         state.page = action.payload.page
         state.loading = false;
-      })
+      }) 
       .addCase(searchEmployeeRecords.rejected, (state, action) => {
         state.loading = false;
         state.error = 'Failed to load employees';

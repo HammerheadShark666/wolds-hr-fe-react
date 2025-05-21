@@ -4,10 +4,10 @@ import { Search } from 'lucide-react';
 import EmployeePopupForm from '../employeeForm/EmployeePopupForm';
 import { setSelectedEmployee } from '../../employeeSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../../app/store'; 
+import { AppDispatch, RootState } from '../../../../app/store';  
 
 type Props = {
-  onSearch: (keyword: string) => void;
+  onSearch: (keyword: string, departmentId: string) => void;
   setShowEmployeePopUpForm: React.Dispatch<React.SetStateAction<boolean>>;  
   showEmployeePopUpForm: boolean;  
 };
@@ -16,10 +16,15 @@ const ToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: 
 
   const { keyword } = useSelector((state: RootState) => state.employeeList);
   const dispatch = useDispatch<AppDispatch>();
-  const [input, setInput] = useState(keyword);
+  const [searchText, setSearchText] = useState(keyword);
+  const [searchDepartment, setSearchDepartment] = useState('0');
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearchDepartment(e.target.value);
+  };
 
   const handleSearchClick = () => {
-    onSearch(input);
+    onSearch(searchText, searchDepartment);
   };
 
   const handleAddEmployeeClick = () => { 
@@ -31,15 +36,27 @@ const ToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: 
     document.getElementById('search')?.focus();
   });
 
+   const departments = useSelector((state: RootState) =>
+      state.department.departments
+    );
+
   return (
     <div className={styles["employee-list-header"]}>
       <div className={styles["toolbar"]}>
-        <div className={styles["search-bar"]}>
+        <div className={styles["search-bar"]}> 
+          <select id="department" value={searchDepartment} onChange={handleChange} className={styles["select"]}>
+            <option value="0">Select</option>
+            {departments.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select> 
           <input
             id="search"
             type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSearchClick()}
             className="border px-2 py-1 mr-2"
             placeholder="Search..."

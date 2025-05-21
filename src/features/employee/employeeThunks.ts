@@ -9,20 +9,20 @@ type ApiEmployeePagingResponse = {
   page: number
   totalPages: number
   totalEmployees: number
-}
- 
-export const searchEmployeeRecords = createAsyncThunk<ApiEmployeePagingResponse, { keyword: string; page: number, pageSize: number }>
-  ('search/searchRecords', async ({ keyword, page, pageSize } , { rejectWithValue }) => {
+} 
+
+export const searchEmployeeRecords = createAsyncThunk<ApiEmployeePagingResponse, { keyword: string; departmentId: string, page: number, pageSize: number }>
+  ('search/searchRecords', async ({ keyword, departmentId, page, pageSize } , { rejectWithValue }) => {
     try     
     {
-      const response = await axios.get(`/employees/search?keyword=${keyword}&page=${page}&pageSize=${pageSize}`)
+      const response = await axios.get(`/employees/search?keyword=${keyword}&departmentId=${departmentId}&page=${page}&pageSize=${pageSize}`)
       return response.data;
     } 
     catch (error: any) 
     { 
       return handleError(error, rejectWithValue); 
     }
-})
+});
    
 export const addEmployee = createAsyncThunk('employee/addEmployee',
   async (employee: Employee, { rejectWithValue, dispatch }) => {

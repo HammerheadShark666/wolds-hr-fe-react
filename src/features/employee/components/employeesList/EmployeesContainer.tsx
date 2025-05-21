@@ -15,19 +15,25 @@ const EmployeesContainer = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { employees, totalPages, totalEmployees, page, loading, keyword } = useSelector((state: RootState) => state.employeeList);
   const [showEmployeePopUpForm, setShowEmployeePopUpForm] = useState(false);
+  const [departmentId, setDepartmentId] = useState('');
  
-  const handleSearch = (keyword: string) => { 
-   if(keyword !== '') {
+  const handleSearch = (keyword: string, departmentId: string) => { 
+
+    if(departmentId !== '') {
+       setDepartmentId(departmentId);
+    }
+
+    if(keyword !== '' || departmentId !== '0') {
       dispatch(setSearch(keyword));
-      dispatch(searchEmployeeRecords({ page: 1, keyword: keyword, pageSize: pageSize }));
+      dispatch(searchEmployeeRecords({ page: 1, keyword: keyword, departmentId: departmentId, pageSize: pageSize }));
     } else {
       dispatch(clearEmployees());
-    }
+    } 
   };
 
   const handlePageChange = (pageNumber: number) => {
-    dispatch(setPage(pageNumber));
-    dispatch(searchEmployeeRecords({ page: pageNumber, keyword: keyword, pageSize: pageSize }));
+    dispatch(setPage(pageNumber)); 
+    dispatch(searchEmployeeRecords({ page: pageNumber, keyword: keyword, departmentId: departmentId, pageSize: pageSize }));  
   };
 
   return (
