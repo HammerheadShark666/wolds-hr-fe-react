@@ -1,21 +1,20 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom'; 
-import { isLoggedIn } from '../../helpers/auth';
-import { store } from '../../app/store';
-import { logout } from './authenticationSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { useEffect } from 'react'; 
+import { checkAuthentication } from './authenticationThunk'; 
+import { RootState, AppDispatch } from '../../app/store';
 
-const ProtectedRoute = () => {
+export default function ProtectedRoute() {
 
-  const location = useLocation();
-  const loggedIn = isLoggedIn();
+  const dispatch = useDispatch<AppDispatch>();
+  const location = useLocation();   
+  const user = useSelector((state: RootState) => state.authentication.profile);
+ 
+  useEffect(() => {
+    dispatch(checkAuthentication());
+  }, [dispatch, location.pathname]);
+ 
+  if (user === null) return <Navigate to="/login" />;
 
-  if(!loggedIn) {
-    store.dispatch(logout());
-  } 
-
-  return loggedIn
-    ? <Outlet /> 
-    : <Navigate to="/login" replace state={{ from: location }} />;
-
-};
-
-export default ProtectedRoute;
+  return <Outlet />;
+}

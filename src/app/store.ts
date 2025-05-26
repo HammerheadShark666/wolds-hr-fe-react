@@ -4,6 +4,7 @@ import employeeImportReducer from '../features/employee/employeeImportSlice';
 import departmentReducer from '../features/department/departmentSlice';
 import authenticationReducer from '../features/authentication/authenticationSlice';
 import { configureStore } from '@reduxjs/toolkit';
+import { setStore } from './storeAccessor';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,8 @@ export const store = configureStore({
   },
   devTools: window.env?.NODE_ENV !== 'production',  
 });
+
+setStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

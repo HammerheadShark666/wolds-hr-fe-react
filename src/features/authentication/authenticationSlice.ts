@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser } from './authenticationThunk';  
+import { checkAuthentication, login } from './authenticationThunk';  
 
-interface AuthenticationState { 
-  token: string | null;
+interface AuthenticationState {  
   profile: { firstName: string; lastName: string; email: string; } | null;
   status: string;
   loading: boolean;
@@ -10,8 +9,7 @@ interface AuthenticationState {
   validationErrors: string[] | null; 
 }
  
-const initialState: AuthenticationState = { 
-  token: null,
+const initialState: AuthenticationState = {  
   profile: null,
   status: 'idle',
   loading: false,
@@ -22,41 +20,36 @@ const initialState: AuthenticationState = {
 const authenticationSlice = createSlice({
     name: 'authentication',
     initialState,
-    reducers: {
-      logout: (state) => {
-        state.token = null;
-        state.profile = null;
-        localStorage.removeItem('token');
-        localStorage.removeItem('profile');
-      },
+    reducers: { 
       clearValidationErrors: (state) => {
         state.validationErrors = null;
       },
-      setCredentials: (state, action) => { 
-        state.token = action.payload.token;
+      setCredentials: (state, action) => {  
         state.profile = action.payload.profile;  
       }
     },
     extraReducers: (builder) => {
       builder
-        .addCase(loginUser.pending, (state) => {
+        .addCase(login.pending, (state) => {
           state.status = 'loading';
           state.error = null;
         })
-        .addCase(loginUser.fulfilled, (state, action) => {
+        .addCase(login.fulfilled, (state, action) => {
           state.status = 'succeeded';
-          if (action.payload) {
-            state.token = action.payload.token;
-            state.profile = action.payload.profile;
+          if (action.payload) { 
+            state.profile = action.payload.profile; 
           }
         })
-        .addCase(loginUser.rejected, (state, action) => {
+        .addCase(login.rejected, (state, action) => {
           state.status = 'failed'; 
           state.validationErrors = (action.payload as string[]) || ['Failed to login'];
-        });
-    },
+        }) 
+        .addCase(checkAuthentication.fulfilled, (state, action) => {
+          state.profile = action.payload.profile;
+        }); 
+      },
   });
   
-  export const { logout, setCredentials, clearValidationErrors } = authenticationSlice.actions;
+  export const { setCredentials, clearValidationErrors } = authenticationSlice.actions; // logout, 
 
   export default authenticationSlice.reducer;

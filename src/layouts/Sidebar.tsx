@@ -3,9 +3,9 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./css/Sidebar.module.css";  
 import { useAppDispatch } from "../app/hooks";
-import { logout } from "../features/authentication/authenticationSlice"; 
 import { clearEmployees } from "../features/employee/employeeListSlice";
 import { clearSelectedEmployee } from "../features/employee/employeeSlice";
+import { logout } from "../features/authentication/authenticationThunk";
 
 interface IProps {
   isOpen: boolean;

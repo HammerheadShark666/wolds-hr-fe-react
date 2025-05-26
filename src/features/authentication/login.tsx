@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'; 
 import { AppDispatch, RootState } from '../../app/store';  
-import { loginUser } from './authenticationThunk';
+import { login } from './authenticationThunk';
 import { LoginRequest } from '../../types/loginRequest';
 import { clearValidationErrors } from './authenticationSlice';
 import { unwrapResult } from '@reduxjs/toolkit';
@@ -39,7 +39,7 @@ export default function LoginForm() {
   const onSubmit = async (data: FormData) => {    
     
     try {
-      var resultAction = await dispatch(loginUser(populateLoginRequest(data)));
+      var resultAction = await dispatch(login(populateLoginRequest(data)));
       unwrapResult(resultAction); 
       navigate("/");
     }
