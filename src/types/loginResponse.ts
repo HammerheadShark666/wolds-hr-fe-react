@@ -1,7 +1,5 @@
 import { ProfileResponse } from "./profileResponse";
 
-export interface LoginResponse {
-  token: string;
-  refreshToken: string;
+export interface LoginResponse { 
   profile: ProfileResponse;
 }
