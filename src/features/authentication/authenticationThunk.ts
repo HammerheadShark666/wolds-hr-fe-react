@@ -24,10 +24,8 @@ export const checkAuthentication = createAsyncThunk('auth/me', async () => {
   
 export const refreshToken = createAsyncThunk(
   'auth/refresh',
-  async (_, { getState }) => {
-    const state: any = getState();
-    const res = await axios.post('/refresh-token', {
-      refreshToken: state.authentication.refreshToken,  
+  async (_, { getState }) => { 
+    const res = await axios.post('/refresh-token', {  
     });
     return res.data;
   }
