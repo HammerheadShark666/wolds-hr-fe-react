@@ -12,7 +12,7 @@ import GlobalErrorBoundary from './components/GlobalErrorBoundary';
 import 'react-toastify/dist/ReactToastify.css';
 import EmployeesImport from './features/employee/pages/EmployeesImport';
 import Login from './features/authentication/login';
-import ProtectedRoute from './features/authentication/protectedRoute'; 
+//import ProtectedRoute from './features/authentication/protectedRoute'; 
 import ToastClearOnRouteChange from './components/ToastClearOnRouteChange';
  
 function App() { 
@@ -22,7 +22,7 @@ function App() {
           <ToastClearOnRouteChange />
           <Routes>          
             <Route path="/login" element={<Login />} />
-            <Route element={<ProtectedRoute />}>
+            {/* <Route element={<ProtectedRoute />}> */}
               <Route element={<Layout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/employees" element={<Employees />} />
@@ -30,7 +30,7 @@ function App() {
                 <Route path="/employment" element={<Employment />} />
                 <Route path="/jobs" element={<Jobs />} />
               </Route>
-            </Route>  
+            {/* </Route>   */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
           <ToastContainer></ToastContainer> 
