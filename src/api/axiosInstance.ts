@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { refreshToken } from '../features/authentication/authenticationThunk'; //logout, 
+import { logout, refreshToken } from '../features/authentication/authenticationThunk'; //
 
 const axiosInstance = axios.create({
   baseURL: window.env?.REACT_APP_API_URL,
@@ -7,9 +7,9 @@ const axiosInstance = axios.create({
 });
 
 async function logoutOfApplication() {
-  // const { store } = await import('../app/store');
-  // store.dispatch(logout());
-  // window.location.href = '/login';
+  const { store } = await import('../app/store');
+  store.dispatch(logout());
+  window.location.href = '/login';
 }
   
 axiosInstance.interceptors.request.use(
