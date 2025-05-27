@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'; 
-import axios from '../../api/axiosInstance';
+import axiosInstance from '../../api/axiosInstance';
 import { Department } from '../../types/department';
 import { RootState } from '../../app/store';
 
@@ -12,7 +12,7 @@ export const fetchDepartments = createAsyncThunk<Department[], void>('department
       return rejectWithValue('Departments already loaded');
     }
 
-    const response = await axios.get('/departments', {});
+    const response = await axiosInstance.get('/departments', {});
     return response.data;
   }
 );
