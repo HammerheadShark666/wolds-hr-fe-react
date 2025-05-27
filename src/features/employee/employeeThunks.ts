@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Employee } from '../../types/employee';
-import axios from '../../api/axiosInstance'; 
+import axiosInstance from '../../api/axiosInstance'; 
 import { updateEmployeeInEmployees, addEmployeeToEmployees, updateEmployeePhotoInEmployees, removeEmployeeFromEmployees } from '../employee/employeeListSlice'
 import { handleError } from '../../helpers/errorHandlingHelper';
  
@@ -15,7 +15,7 @@ export const searchEmployeeRecords = createAsyncThunk<ApiEmployeePagingResponse,
   ('search/searchRecords', async ({ keyword, departmentId, page, pageSize } , { rejectWithValue }) => {
     try     
     {
-      const response = await axios.get(`/employees/search?keyword=${keyword}&departmentId=${departmentId}&page=${page}&pageSize=${pageSize}`)
+      const response = await axiosInstance.get(`/employees/search?keyword=${keyword}&departmentId=${departmentId}&page=${page}&pageSize=${pageSize}`)
       return response.data;
     } 
     catch (error: any) 
@@ -29,7 +29,7 @@ export const addEmployee = createAsyncThunk('employee/addEmployee',
   
     try     
     { 
-      const response = await axios.post( '/employees/add', employee);
+      const response = await axiosInstance.post( '/employees/add', employee);
       dispatch(addEmployeeToEmployees(response.data));
       return response.data; 
     } 
@@ -45,7 +45,7 @@ export const updateEmployee = createAsyncThunk('employee/updateEmployee',
   
     try 
     {      
-      const response = await axios.put( '/employees/update', employee);
+      const response = await axiosInstance.put( '/employees/update', employee);
       dispatch(updateEmployeeInEmployees(response.data));
       return response.data; 
     } 
@@ -60,7 +60,7 @@ export const deleteEmployee = createAsyncThunk('employees/deleteEmployee',
   async (employeeId: number, { rejectWithValue, dispatch }) => {
 
     try {          
-      const response = await axios.delete('/employees/' + employeeId);  
+      const response = await axiosInstance.delete('/employees/' + employeeId);  
       dispatch(removeEmployeeFromEmployees(employeeId));    
       return response.data; 
     } 
@@ -79,7 +79,7 @@ export const updateEmployeePhoto = createAsyncThunk('employee/updateEmployeePhot
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await axios.post(`/employees/upload-photo/${id}`, formData); 
+      const response = await axiosInstance.post(`/employees/upload-photo/${id}`, formData); 
 
       dispatch(updateEmployeePhotoInEmployees(response.data));
       return response.data; 
@@ -99,7 +99,7 @@ export const importEmployees = createAsyncThunk('employee/import',
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await axios.post(`/employees/import`, formData, {
+      const response = await axiosInstance.post(`/employees/import`, formData, {
         headers: {
           'Content-Type': undefined
         }
@@ -118,7 +118,7 @@ export const searchImportedEmployees = createAsyncThunk<ApiEmployeePagingRespons
   ('search/searchImportedRecords', async ({ importDate, page, pageSize } , { rejectWithValue }) => {
     try     
     {
-      const response = await axios.get(`/employees/imported?importDate=${importDate.split('T')[0]}&page=${page}&pageSize=${pageSize}`)
+      const response = await axiosInstance.get(`/employees/imported?importDate=${importDate.split('T')[0]}&page=${page}&pageSize=${pageSize}`)
       return response.data;
     } 
     catch (error: any) 
