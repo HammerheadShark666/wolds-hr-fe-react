@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useEffect } from 'react';
-import { setCredentials } from './features/authentication/authenticationSlice';
+//import { useEffect } from 'react';
+//import { setCredentials } from './features/authentication/authenticationSlice';
 import { ToastContainer } from 'react-toastify'; 
 import Layout from "./layouts/Layout";
 import Employees from './features/employee/pages/Employees';
@@ -12,22 +12,10 @@ import GlobalErrorBoundary from './components/GlobalErrorBoundary';
 import 'react-toastify/dist/ReactToastify.css';
 import EmployeesImport from './features/employee/pages/EmployeesImport';
 import Login from './features/authentication/login';
-import ProtectedRoute from './features/authentication/protectedRoute';
-import { useAppDispatch } from './app/hooks';
+import ProtectedRoute from './features/authentication/protectedRoute'; 
 import ToastClearOnRouteChange from './components/ToastClearOnRouteChange';
  
-function App() {
- 
-  const dispatch = useAppDispatch(); 
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const profile = JSON.parse(localStorage.getItem('profile') || 'null');
-    if (token) {
-      dispatch(setCredentials({ token, profile }));
-    }
-  }, [dispatch]);
-  
+function App() { 
   return ( 
       <GlobalErrorBoundary>        
         <BrowserRouter>
