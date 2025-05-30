@@ -1,16 +1,1 @@
-{
-  "navigationFallback": {
-    "rewrite": "/index.html",
-    "exclude": ["/static/*", "/assets/*"]
-  },
-  "routes": [
-    {
-      "route": "/login",
-      "allowedRoles": ["anonymous"]
-    },
-    {
-      "route": "/*",
-      "allowedRoles": ["anonymous"]
-    }
-  ]
-}
+{"navigationFallback":{"rewrite":"/index.html","exclude":["/static/*","/assets/*"]},"routes":[{"route":"/login","allowedRoles":["anonymous"]},{"route":"/*","allowedRoles":["anonymous"]}],"auth":{"rolesSource":" ","identityProviders":{"github":{"registration":{"clientIdSettingName":"GITHUB_CLIENT_ID","clientSecretSettingName":"GITHUB_CLIENT_SECRET_APP_SETTING_NAME"}}}}}
