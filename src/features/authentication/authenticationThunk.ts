@@ -9,6 +9,9 @@ export const login = createAsyncThunk('auth/login',
 
   try 
   {
+
+    console.log("API base URL:", process.env.REACT_APP_API_BASE_URL);
+
     const response = await axiosInstance.post<LoginResponse>('/login', loginRequest); 
     return response.data;
 
