@@ -2,5 +2,12 @@
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": ["/static/*", "/assets/*"]
-  }
+  },
+  "routes": [
+    {
+      "route": "/*",
+      "statusCode": 308,
+      "redirect": "https://www.wolds-hr.co.uk"
+    }
+  ]
 }
