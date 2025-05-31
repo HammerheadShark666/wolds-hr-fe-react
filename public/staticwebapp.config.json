@@ -5,9 +5,17 @@
   },
   "routes": [
     {
+      "route": "/",
+      "redirect": "https://www.wolds-hr.co.uk",
+      "statusCode": 301
+    },
+    {
+      "route": "/login",
+      "allowedRoles": ["anonymous"]
+    },
+    {
       "route": "/*",
-      "statusCode": 301,
-      "redirect": "https://www.wolds-hr.co.uk"
+      "allowedRoles": ["anonymous"]
     }
   ]
 }
