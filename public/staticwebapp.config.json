@@ -3,12 +3,7 @@
     "rewrite": "/index.html",
     "exclude": ["/static/*", "/assets/*"]
   },
-  "routes": [
-    {
-      "route": "/",
-      "redirect": "https://www.wolds-hr.co.uk",
-      "statusCode": 301
-    },
+  "routes": [ 
     {
       "route": "/login",
       "allowedRoles": ["anonymous"]
