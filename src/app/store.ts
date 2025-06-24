@@ -1,6 +1,6 @@
 import employeeReducer from '../features/employee/employeeSlice';
 import employeeListReducer from '../features/employee/employeeListSlice';
-import employeeImportReducer from '../features/employee/employeeImportSlice';
+import employeeImportReducer from '../features/employee-import/employeeImportSlice';
 import departmentReducer from '../features/department/departmentSlice';
 import authenticationReducer from '../features/authentication/authenticationSlice';
 import { configureStore } from '@reduxjs/toolkit';

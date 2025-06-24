@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import styles from "../css/Employee.module.css";
+import styles from "../css/Employee-import.module.css";
 import { fetchDepartments } from "../../department/departmentThunks";
 import { useAppDispatch } from "../../../app/hooks";
-import EmployeesImportContainer from "../components/employeesImport/EmployeesImportContainer";
+import EmployeesImportContainer from "../components/EmployeesImportContainer";
 
 const EmployeesImport: React.FC = () => {
 

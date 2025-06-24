@@ -8,7 +8,7 @@ import Home from "./features/home/pages/Home";
 import Jobs from './features/job/pages/Jobs';
 import GlobalErrorBoundary from './components/GlobalErrorBoundary';
 import 'react-toastify/dist/ReactToastify.css';
-import EmployeesImport from './features/employee/pages/EmployeesImport';
+import EmployeesImport from './features/employee-import/pages/EmployeesImport';
 import Login from './features/authentication/login';
 import ProtectedRoute from './features/authentication/protectedRoute'; 
 import ToastClearOnRouteChange from './components/ToastClearOnRouteChange';

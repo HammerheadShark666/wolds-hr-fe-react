@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import styles from "../../css/Employee-list-toolbar.module.css"; 
+import styles from "../css/Employee-import-list-toolbar.module.css"; 
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../../app/store';
-import { importEmployees } from '../../employeeThunks';
+import { AppDispatch } from '../../../app/store';
+import { importEmployees } from '../../employee-import/employeeImportThunks';
 
 type Props = {
   onSearch: (importDate: string) => void;
