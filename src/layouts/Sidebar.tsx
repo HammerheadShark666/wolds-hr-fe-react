@@ -1,4 +1,4 @@
-import { BriefcaseBusiness, Calendar1, CircleUserRound, House, LogOut } from "lucide-react";
+import { CircleUserRound, House, LogOut } from "lucide-react"; //BriefcaseBusiness, Calendar1, 
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./css/Sidebar.module.css";  
@@ -40,8 +40,8 @@ const Sidebar: React.FC<IProps> = ({ isOpen, onClose }) => {
           <li><NavLink to="/" className={({ isActive }) => `${styles["sidebarLink"]} ${isActive ? styles["active"] : ""}`}><House /><span>Home</span></NavLink></li> 
           <li><NavLink to="/employees" className={({ isActive }) => `${styles["sidebarLink"]} ${isActive ? styles["active"] : ""}`}><CircleUserRound /><span>Employees</span></NavLink></li>  
           <li><NavLink to="/employees-import" className={({ isActive }) => `${styles["sidebarLink"]} ${isActive ? styles["active"] : ""}`}><CircleUserRound /><span>Employees (Import)</span></NavLink></li>    
-          <li><NavLink to="/employment" className={({ isActive }) => `${styles["sidebarLink"]} ${isActive ? styles["active"] : ""}`}> <Calendar1 /><span>Employment</span></NavLink></li>           
-          <li><NavLink to="/jobs" className={({ isActive }) => `${styles["sidebarLink"]} ${isActive ? styles["active"] : ""}`}> <BriefcaseBusiness /><span>Jobs</span></NavLink></li>   
+          {/* <li><NavLink to="/employment" className={({ isActive }) => `${styles["sidebarLink"]} ${isActive ? styles["active"] : ""}`}> <Calendar1 /><span>Employment</span></NavLink></li>           
+          <li><NavLink to="/jobs" className={({ isActive }) => `${styles["sidebarLink"]} ${isActive ? styles["active"] : ""}`}> <BriefcaseBusiness /><span>Jobs</span></NavLink></li>    */}
           <li><NavLink to="#" onClick={logoutUser}><LogOut /><span>Logout</span></NavLink></li>
         </ul>
       </aside>
