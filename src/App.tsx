@@ -9,6 +9,7 @@ import Jobs from './features/job/pages/Jobs';
 import GlobalErrorBoundary from './components/GlobalErrorBoundary';
 import 'react-toastify/dist/ReactToastify.css';
 import EmployeesImport from './features/employee-import/pages/EmployeesImport';
+import EmployeesImportHistory from './features/employee-import-history/pages/EmployeesImportHistory';
 import Login from './features/authentication/login';
 import ProtectedRoute from './features/authentication/protectedRoute'; 
 import ToastClearOnRouteChange from './components/ToastClearOnRouteChange';
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/employees" element={<Employees />} />
                 <Route path="/employees-import" element={<EmployeesImport />} />
+                <Route path="/employees-import-history" element={<EmployeesImportHistory />} />
                 <Route path="/employment" element={<Employment />} />
                 <Route path="/jobs" element={<Jobs />} />
               </Route>

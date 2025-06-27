@@ -43,6 +43,9 @@ const ToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: 
   return (
     <div className={styles["employee-list-header"]}>
       <div className={styles["toolbar"]}>
+        <div className={styles["toolbar-title"]}> 
+         <span>Employees</span>
+        </div>
         <div className={styles["search-bar"]}> 
           <select id="department" value={searchDepartment} onChange={handleChange} className={styles["select"]}>
             <option value="0">Select</option>
@@ -62,10 +65,11 @@ const ToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: 
             placeholder="Search..."
           />
           <button onClick={handleSearchClick}><Search /></button>
+          <button type="button" onClick={handleAddEmployeeClick}>Add New Employee</button> 
         </div>
-        <div className={styles["toolbar-buttons"]}>      
-          <button type="button" onClick={handleAddEmployeeClick}>Add New Employee</button>    
-        </div>
+        {/* <div className={styles["toolbar-buttons"]}>      
+             
+        </div> */}
       </div>
       {showEmployeePopUpForm && <EmployeePopupForm setShowEmployeePopUpForm={setShowEmployeePopUpForm} />}
     </div>

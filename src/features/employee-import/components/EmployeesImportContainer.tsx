@@ -36,25 +36,47 @@ const EmployeesImportContainer = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4"> 
       <ToastErrors error={error} onClear={() => dispatch(clearValidationError())} />
-      <EmployeesImportToolBar onSearch={handleSearch} setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} />
-     
+      {/* <EmployeesImportToolBar onSearch={handleSearch} setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} />
+      */}
       {loading ? 
         <p>Loading...</p> : 
-        <Tabs className={styles["employee-import-tabs"]} defaultValue="imported-employees">
-          <TabsList>
-            <TabsTrigger className={styles["employee-import-tab"]} value="imported-employees">Imported Employees</TabsTrigger>
-            <TabsTrigger className={styles["employee-import-tab"]} value="existing-employees">Existing Employees</TabsTrigger>
-            <TabsTrigger className={styles["employee-import-tab"]} value="failed-employees">Failed Imports</TabsTrigger>
-          </TabsList>
-          <TabsContent value="imported-employees">
-            <EmployeesTable setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} rows={employeesImported} />
-            <Pagination totalPages={totalPages} totalRecords={totalImportedEmployees} currentPage={page} onPageChange={handlePageChange} title={"Imported Employees"} />
-          </TabsContent>
-          <TabsContent value="existing-employees">existing-employees</TabsContent>
-          <TabsContent value="failed-employees">failed-employees</TabsContent>
-        </Tabs>}
+       
+          <>
+           
+            <EmployeesImportToolBar onSearch={handleSearch} setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} />
+     
+          <Tabs className={styles["employee-import-tabs"]} defaultValue="imported-employees">
+           <TabsList>
+             <TabsTrigger className={styles["employee-import-tab"]} value="imported-employees">Imported Employees</TabsTrigger>
+             <TabsTrigger className={styles["employee-import-tab"]} value="existing-employees">Existing Employees</TabsTrigger>
+             <TabsTrigger className={styles["employee-import-tab"]} value="failed-employees">Failed Imports</TabsTrigger>
+           </TabsList>
+           <TabsContent value="imported-employees">
+             <EmployeesTable setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} rows={employeesImported} />
+             <Pagination totalPages={totalPages} totalRecords={totalImportedEmployees} currentPage={page} onPageChange={handlePageChange} title={"Imported Employees"} />
+           </TabsContent>
+           <TabsContent value="existing-employees">existing-employees</TabsContent>
+           <TabsContent value="failed-employees">failed-employees</TabsContent>   
+         </Tabs>
+          
+         </>
+       
+      //  <Tabs className={styles["employee-import-tabs"]} defaultValue="imported-employees">
+      //     <TabsList>
+      //       <TabsTrigger className={styles["employee-import-tab"]} value="imported-employees">Imported Employees</TabsTrigger>
+      //       <TabsTrigger className={styles["employee-import-tab"]} value="existing-employees">Existing Employees</TabsTrigger>
+      //       <TabsTrigger className={styles["employee-import-tab"]} value="failed-employees">Failed Imports</TabsTrigger>
+      //     </TabsList>
+      //     <TabsContent value="imported-employees">
+      //       <EmployeesTable setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} rows={employeesImported} />
+      //       <Pagination totalPages={totalPages} totalRecords={totalImportedEmployees} currentPage={page} onPageChange={handlePageChange} title={"Imported Employees"} />
+      //     </TabsContent>
+      //     <TabsContent value="existing-employees">existing-employees</TabsContent>
+      //     <TabsContent value="failed-employees">failed-employees</TabsContent>   
+      //   </Tabs>
+      }
       </div>
   );
 };

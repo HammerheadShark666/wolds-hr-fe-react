@@ -6,8 +6,9 @@
   border-bottom: 1px solid rgba(231, 224, 229, 0.97);
 }
 
-.employee-list-table tr th {
-  background-color: rgba(231, 224, 229, 0.97);  
+.employee-list-table tr th { 
+  color: #fff;
+  background-color: lightslategrey;
   text-align: left;
   padding: 10px;
   font-size: smaller;
