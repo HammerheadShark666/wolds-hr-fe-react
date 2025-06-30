@@ -3,7 +3,7 @@ import styles from "./css/Layout.module.css";
 // import Sidebar from "./Sidebar"; 
 //import { useState } from 'react'; 
 import { Outlet } from 'react-router-dom';
-import SidebarNew from './SidebarNew';
+import Sidebar from './Sidebar';
 
 const Layout = () => {
   // const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -11,7 +11,7 @@ const Layout = () => {
   return (
     <div className={styles["layout"]}>
       {/* <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} /> */}
-        <SidebarNew></SidebarNew>
+        <Sidebar></Sidebar>
       <div className={styles["main-content"]}>
         {/* <Header onHamburgerClick={() => setSidebarOpen(true)} /> */}
         <div className={styles["content"]}>

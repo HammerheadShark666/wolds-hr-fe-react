@@ -1,12 +1,8 @@
 import EmployeesImportHistoryToolBar from "./EmployeesImportHistoryToolBar";
 
 const EmployeesImportHistoryContainer = () => {
-
-     return (
-      
-
-         <EmployeesImportHistoryToolBar />
-     
+  return (    
+    <EmployeesImportHistoryToolBar />     
   );
 };
 

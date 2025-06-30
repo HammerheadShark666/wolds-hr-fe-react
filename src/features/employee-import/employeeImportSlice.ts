@@ -4,7 +4,7 @@ import { Employee } from '../../types/employee';
  
 interface EmployeeImportState {
   existingEmployees: Employee[];
-  employeesImported: Employee[]; // This is not used in the current code, but can be used if needed
+  employeesImported: Employee[];
   employeeImportId: number | null;
   employeesErrorImporting: string[]; 
   totalPages: number;
@@ -17,7 +17,7 @@ interface EmployeeImportState {
 
 const initialState: EmployeeImportState = {
   existingEmployees: [],
-  employeesImported: [], // This is not used in the current code, but can be used if needed
+  employeesImported: [],
   employeeImportId: null,
   employeesErrorImporting: [],
   totalPages: 0,

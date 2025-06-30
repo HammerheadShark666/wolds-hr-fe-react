@@ -16,7 +16,7 @@ const EmployeesImport: React.FC = () => {
     <>   
       <div className={styles["employee-container"]}>
         <div className={styles["employee-list"]}>  
-            <EmployeesImportContainer></EmployeesImportContainer>
+          <EmployeesImportContainer></EmployeesImportContainer>
         </div>       
       </div>
     </>

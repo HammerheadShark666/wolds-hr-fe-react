@@ -1,17 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import styles from "../css/Employee-import-history-toolbar.module.css"; 
+import React, { useEffect, useRef } from 'react'; 
+import globals from "../../../components/css/Toolbar.module.css"
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../app/store';
 import { importEmployees } from '../../employee-import/employeeImportThunks';
-
-// type Props = {
-//   onSearch: (importDate: string) => void;
-//   setShowEmployeePopUpForm: React.Dispatch<React.SetStateAction<boolean>>;  
-//   showEmployeePopUpForm: boolean;  
-// };
-
-//{ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: Props
-
+ 
 const EmployeesImportToolBar = () => {
  
   const dispatch = useDispatch<AppDispatch>(); 
@@ -34,23 +26,21 @@ const EmployeesImportToolBar = () => {
     document.getElementById('search')?.focus();
   });
 
-  return (
-    <div className={styles["employee-list-header"]}>
-      <div className={styles["toolbar"]}> 
-        <div className={styles["toolbar-title"]}> 
-         <span>Employees Import History</span>
-        </div>
-        <div className={styles["toolbar-buttons"]}>     
-          <button type="button" onClick={handleImportEmployeesClick}>Drop down</button>
-          <input
-              type="file"
-              ref={fileInputRef} 
-              onChange={handleFileChange}
-              style={{ display: 'none' }}
-            />   
-        </div>
-      </div> 
-    </div>
+  return ( 
+    <div className={globals["toolbar"]}> 
+      <div className={globals["toolbar-title"]}> 
+        <span>Employees Import History</span>
+      </div>
+      <div className={globals["toolbar-buttons"]}>     
+        <button type="button" onClick={handleImportEmployeesClick}>Drop down</button>
+        <input
+            type="file"
+            ref={fileInputRef} 
+            onChange={handleFileChange}
+            style={{ display: 'none' }}
+          />   
+      </div>
+    </div>  
   );
 };
 

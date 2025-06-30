@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../../app/store';
-import ToolBar from './ToolBar'; 
+import EmployeesToolBar from './EmployeesToolBar'; 
 import { clearEmployees, setPage, setSearch } from '../../employeeListSlice'; 
 import { searchEmployeeRecords } from '../../employeeThunks';
 import Pagination from '../../../../components/Pagination';
@@ -38,7 +38,7 @@ const EmployeesContainer = () => {
 
   return (
     <div className="p-4">
-      <ToolBar onSearch={handleSearch} setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} />
+      <EmployeesToolBar onSearch={handleSearch} setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} />
       {loading ? 
         <p>Loading...</p> : 
         <EmployeesTable setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} rows={employees} />}
