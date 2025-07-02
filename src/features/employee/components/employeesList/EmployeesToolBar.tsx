@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from "../../css/Employee-list-toolbar.module.css";
+import globals from "../../../../components/css/Toolbar.module.css"
 import { Search } from 'lucide-react';
 import EmployeePopupForm from '../employeeForm/EmployeePopupForm';
 import { setSelectedEmployee } from '../../employeeSlice';
@@ -12,7 +13,7 @@ type Props = {
   showEmployeePopUpForm: boolean;  
 };
 
-const ToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: Props) => {
+const EmployeesToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: Props) => {
 
   const { keyword } = useSelector((state: RootState) => state.employeeList);
   const dispatch = useDispatch<AppDispatch>();
@@ -42,7 +43,10 @@ const ToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: 
 
   return (
     <div className={styles["employee-list-header"]}>
-      <div className={styles["toolbar"]}>
+      <div className={globals["toolbar"]}>
+        <div className={globals["toolbar-title"]}> 
+         <span>Employees</span>
+        </div>
         <div className={styles["search-bar"]}> 
           <select id="department" value={searchDepartment} onChange={handleChange} className={styles["select"]}>
             <option value="0">Select</option>
@@ -62,9 +66,7 @@ const ToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: 
             placeholder="Search..."
           />
           <button onClick={handleSearchClick}><Search /></button>
-        </div>
-        <div className={styles["toolbar-buttons"]}>      
-          <button type="button" onClick={handleAddEmployeeClick}>Add New Employee</button>    
+          <button type="button" onClick={handleAddEmployeeClick}>Add New Employee</button> 
         </div>
       </div>
       {showEmployeePopUpForm && <EmployeePopupForm setShowEmployeePopUpForm={setShowEmployeePopUpForm} />}
@@ -72,4 +74,4 @@ const ToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: 
   );
 };
 
-export default ToolBar;
+export default EmployeesToolBar;

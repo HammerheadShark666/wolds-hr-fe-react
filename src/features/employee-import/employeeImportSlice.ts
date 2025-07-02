@@ -1,28 +1,68 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getImportedEmployee, importEmployees, searchImportedEmployees } from '../employee-import/employeeImportThunks';
+import { getImportedEmployee, getImportedExistingEmployee, importEmployees } from '../employee-import/employeeImportThunks';
 import { Employee } from '../../types/employee'; 
+//import { Import } from 'lucide-react';
+
+//searchImportedEmployees
+
+type ImportedEmployees = {
+  employees: Employee[]
+  page: number
+  totalPages: number
+  totalEmployees: number
+}   
+
+
  
-interface EmployeeImportState {
-  existingEmployees: Employee[];
-  employeesImported: Employee[]; // This is not used in the current code, but can be used if needed
+interface EmployeeImportState { 
+  importedEmployees: ImportedEmployees;
+  importedExistingEmployees: ImportedEmployees;
+
+ // existingEmployees: Employee[];
+ // employeesImported: Employee[];
   employeeImportId: number | null;
   employeesErrorImporting: string[]; 
-  totalPages: number;
-  totalImportedEmployees: number;
-  page: number;
+  //totalPages: number;
+  ///totalImportedEmployees: number;
+  //page: number;
   importDate: string | null;
   loading: boolean;
   error: string | null;
 } 
 
 const initialState: EmployeeImportState = {
-  existingEmployees: [],
-  employeesImported: [], // This is not used in the current code, but can be used if needed
+
+
+// employeeSearch: {
+//     employees: [],
+//     page: 1,
+//     totalPages: 0,
+//     totalEmployees: 0,
+//   },
+
+importedEmployees: {
+    employees: [],
+    page: 1,
+    totalPages: 0,
+    totalEmployees: 0,
+  },
+
+  importedExistingEmployees: {
+    employees: [],
+    page: 1,
+    totalPages: 0,
+    totalEmployees: 0,
+  },
+
+ // importedEmloyees: [],
+  //existingEmployees: [],
+  //employeesImported: [],
+
   employeeImportId: null,
   employeesErrorImporting: [],
-  totalPages: 0,
-  totalImportedEmployees: 0,
-  page: 1,
+  //totalPages: 0,
+  //totalImportedEmployees: 0,
+  //page: 1,
   importDate: null,
   loading: false,
   error: null,
@@ -34,21 +74,40 @@ const employeeImportSlice = createSlice({
   reducers: {  
     setImportSearchDate(state, action: PayloadAction<string>) {
       state.importDate = action.payload;
-      state.page = 1;
+      state.importedEmployees.page = 1;
+      state.importedExistingEmployees.page = 1;
     },
-    setImportSearchPage(state, action: PayloadAction<number>) {
-      state.page = action.payload;
+    setImportedEmployeesPage(state, action: PayloadAction<number>) {
+      state.importedEmployees.page = action.payload;
+    },
+    setImportedExistingEmployeesPage(state, action: PayloadAction<number>) {
+      state.importedExistingEmployees.page = action.payload;
     },
     clearValidationError: (state) => {
       state.error = null;
     },
     clearImportedEmployees(state) {
-      state.existingEmployees = [];
+
+   state.importedEmployees = {
+    employees: [],
+    page: 1,
+    totalPages: 0,
+    totalEmployees: 0,
+  };
+
+  state.importedExistingEmployees = {
+    employees: [],
+    page: 1,
+    totalPages: 0,
+    totalEmployees: 0,
+  };
+
+     // state.existingEmployees = [];
       state.employeeImportId = null;
       state.employeesErrorImporting = [];
-      state.totalPages = 0;
-      state.totalImportedEmployees = 0;
-      state.page = 1;
+     // state.totalPages = 0;
+     // state.totalImportedEmployees = 0;
+    //  state.page = 1;
       state.importDate = null;
       state.loading = false;
       state.error = null;
@@ -61,41 +120,43 @@ const employeeImportSlice = createSlice({
         state.error = null;
       })
       .addCase(importEmployees.fulfilled, (state, action) => {
-        state.existingEmployees = [...action.payload.existingEmployees];
-        state.employeeImportId = action.payload.employeeImportId;
-        state.employeesErrorImporting = [...action.payload.employeesErrorImporting]; 
-        state.importDate = new Date().toISOString(); 
+        //state.existingEmployees = [...action.payload.existingEmployees];
+        state.employeeImportId = action.payload.id;
+       // state.employeesErrorImporting = [...action.payload.employeesErrorImporting]; 
+        state.importDate = action.payload.date;  //new Date().toISOString(); 
         state.loading = false;
       })
       .addCase(importEmployees.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       })  
-      .addCase(searchImportedEmployees.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(searchImportedEmployees.fulfilled, (state, action) => { 
-        state.totalPages = action.payload.totalPages;
-        state.totalImportedEmployees = action.payload.totalEmployees;
-        state.page =  action.payload.page;
-        state.importDate = new Date().toISOString(); 
-        state.loading = false;
-      })
-      .addCase(searchImportedEmployees.rejected, (state, action) => {
-        state.loading = false;
-        state.error = 'Failed to import employees';
-      })  
+      // .addCase(searchImportedEmployees.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = null;
+      // })
+      // .addCase(searchImportedEmployees.fulfilled, (state, action) => { 
+
+
+      //   state.totalPages = action.payload.totalPages;
+      //   state.totalImportedEmployees = action.payload.totalEmployees;
+      //   state.page =  action.payload.page;
+      //   state.importDate = new Date().toISOString(); 
+      //   state.loading = false;
+      // })
+      // .addCase(searchImportedEmployees.rejected, (state, action) => {
+      //   state.loading = false;
+      //   state.error = 'Failed to import employees';
+      // })  
 
       .addCase(getImportedEmployee.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(getImportedEmployee.fulfilled, (state, action) => {
-        state.employeesImported = [...action.payload.employees];
-        state.totalPages = action.payload.totalPages;
-        state.totalImportedEmployees = action.payload.totalEmployees;
-        state.page =  action.payload.page;
+        state.importedEmployees.employees = [...action.payload.employees];
+        state.importedEmployees.totalPages = action.payload.totalPages;
+        state.importedEmployees.totalEmployees = action.payload.totalEmployees;
+        state.importedEmployees.page =  action.payload.page;
         state.importDate = new Date().toISOString(); 
         state.loading = false;
       })
@@ -103,7 +164,22 @@ const employeeImportSlice = createSlice({
         state.loading = false;
         state.error = 'Failed to get imported employees';
       })  
-
+      .addCase(getImportedExistingEmployee.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getImportedExistingEmployee.fulfilled, (state, action) => {
+        state.importedExistingEmployees.employees = [...action.payload.existingEmployees];
+        state.importedExistingEmployees.totalPages = action.payload.totalPages;
+        state.importedExistingEmployees.totalEmployees = action.payload.totalEmployees;
+        state.importedExistingEmployees.page =  action.payload.page;
+        state.importDate = new Date().toISOString(); 
+        state.loading = false;
+      })
+      .addCase(getImportedExistingEmployee.rejected, (state, action) => {
+        state.loading = false;
+        state.error = 'Failed to get imported existing employees';
+      })   
       .addDefaultCase((state) => {
         // This is a catch-all for any actions that don't match
         // It can be used to reset state or handle unexpected actions
@@ -111,5 +187,5 @@ const employeeImportSlice = createSlice({
   },
 });
 
-export const { clearImportedEmployees, setImportSearchDate, setImportSearchPage, clearValidationError } = employeeImportSlice.actions
+export const { clearImportedEmployees, setImportSearchDate, setImportedEmployeesPage, setImportedExistingEmployeesPage, clearValidationError } = employeeImportSlice.actions
 export default employeeImportSlice.reducer;

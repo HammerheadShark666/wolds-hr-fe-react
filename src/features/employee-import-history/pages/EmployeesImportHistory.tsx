@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styles from "../css/Employee-import.module.css";
 import { fetchDepartments } from "../../department/departmentThunks";
 import { useAppDispatch } from "../../../app/hooks";
-import EmployeesImportContainer from "../components/EmployeesImportContainer";
+import EmployeesImportHistoryContainer from "../components/EmployeesImportHistoryContainer";
 
 const EmployeesImport: React.FC = () => {
 
@@ -16,7 +16,7 @@ const EmployeesImport: React.FC = () => {
     <>   
       <div className={styles["employee-container"]}>
         <div className={styles["employee-list"]}>  
-          <EmployeesImportContainer></EmployeesImportContainer>
+            <EmployeesImportHistoryContainer></EmployeesImportHistoryContainer>
         </div>       
       </div>
     </>
