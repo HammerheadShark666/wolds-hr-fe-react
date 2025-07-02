@@ -10,6 +10,13 @@ type ApiEmployeePagingResponse = {
   totalEmployees: number
 }  
 
+type ApiExistingEmployeePagingResponse = {
+  existingEmployees: Employee[]
+  page: number
+  totalPages: number
+  totalEmployees: number
+}  
+
 export const importEmployees = createAsyncThunk('employee/import',
   async ({ file }: { file: File }, { rejectWithValue, dispatch }) => {
   
@@ -24,7 +31,8 @@ export const importEmployees = createAsyncThunk('employee/import',
         }
       });  
 
-      await dispatch(getImportedEmployee({ id: response.data.employeeImportId, page: 1, pageSize: 5 }));
+      await dispatch(getImportedEmployee({ id: response.data.id, page: 1, pageSize: 5 }));
+      await dispatch(getImportedExistingEmployee({ id: response.data.id, page: 1, pageSize: 5 }));
 
       return response.data; 
     } 
@@ -47,12 +55,12 @@ export const getImportedEmployee = createAsyncThunk<ApiEmployeePagingResponse, {
       return handleError(error, rejectWithValue); 
     }
 });
-  
-export const searchImportedEmployees = createAsyncThunk<ApiEmployeePagingResponse, { importDate: string; page: number, pageSize: number }>
-  ('search/searchImportedRecords', async ({ importDate, page, pageSize } , { rejectWithValue }) => {
+
+export const getImportedExistingEmployee = createAsyncThunk<ApiExistingEmployeePagingResponse, { id: number, page: number, pageSize: number }>
+  ('get/imported/existing-employees', async ({ id, page, pageSize } , { rejectWithValue }) => {
     try     
     {
-      const response = await axiosInstance.get(`/employees/imported?importDate=${importDate.split('T')[0]}&page=${page}&pageSize=${pageSize}`)
+      const response = await axiosInstance.get(`/employees-import/existing-employees?id=${id}&page=${page}&pageSize=${pageSize}`)
       return response.data;
     } 
     catch (error: any) 
@@ -60,3 +68,16 @@ export const searchImportedEmployees = createAsyncThunk<ApiEmployeePagingRespons
       return handleError(error, rejectWithValue); 
     }
 });
+  
+// export const searchImportedEmployees = createAsyncThunk<ApiEmployeePagingResponse, { importDate: string; page: number, pageSize: number }>
+//   ('search/searchImportedRecords', async ({ importDate, page, pageSize } , { rejectWithValue }) => {
+//     try     
+//     {
+//       const response = await axiosInstance.get(`/employees/imported?importDate=${importDate.split('T')[0]}&page=${page}&pageSize=${pageSize}`)
+//       return response.data;
+//     } 
+//     catch (error: any) 
+//     { 
+//       return handleError(error, rejectWithValue); 
+//     }
+// });
