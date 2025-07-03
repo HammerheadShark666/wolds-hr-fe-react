@@ -1,30 +1,36 @@
-import React, { useEffect, useRef } from 'react'; 
+import React, { useEffect, useState } from 'react'; 
 import globals from "../../../components/css/Toolbar.module.css"
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../app/store';
-import { importEmployees } from '../../employee-import/employeeImportThunks';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../app/store';
+import { getImportedEmployeeHistory } from '../employeeImportHistoryThunk'; 
+import { getImportedEmployee, getImportedExistingEmployee } from '../../employee-import/employeeImportThunks';
  
-const EmployeesImportToolBar = () => {
+const EmployeesImportHistoryToolBar = () => {
  
   const dispatch = useDispatch<AppDispatch>(); 
-  const fileInputRef = useRef<HTMLInputElement>(null); 
+  const [importHistoryId, setImportHistoryId] = useState(0);
+ 
 
-  const handleImportEmployeesClick = () => {
-    fileInputRef.current?.click();
-  }
-  
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    
-    const file = event.target.files?.[0];
-    if (file) {        
-      dispatch(importEmployees({file}));
-    }
-    event.target.value = '';
+  const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+
+    var importHistoryId = parseInt(e.target.value);
+
+    setImportHistoryId(importHistoryId);
+
+    await dispatch(getImportedEmployee({ id: importHistoryId, page: 1, pageSize: 5 }));
+    await dispatch(getImportedExistingEmployee({ id: importHistoryId, page: 1, pageSize: 5 }));
   };
+  
    
   useEffect(() => {
-    document.getElementById('search')?.focus();
-  });
+    document.getElementById('import-history')?.focus();
+    dispatch(getImportedEmployeeHistory())
+  }, [dispatch]);
+
+  const importEmployeeHistory = useSelector((state: RootState) =>
+    state.employeeImportHistory.employeeImportHistory
+  );
+ 
 
   return ( 
     <div className={globals["toolbar"]}> 
@@ -32,16 +38,20 @@ const EmployeesImportToolBar = () => {
         <span>Employees Import History</span>
       </div>
       <div className={globals["toolbar-buttons"]}>     
-        <button type="button" onClick={handleImportEmployeesClick}>Drop down</button>
-        <input
-            type="file"
-            ref={fileInputRef} 
-            onChange={handleFileChange}
-            style={{ display: 'none' }}
-          />   
+        <select id="import-history" value={importHistoryId} onChange={handleChange} >
+            <option value="0">Select</option>
+            {importEmployeeHistory.map((item) => (
+              <option key={item.id} value={item.id}>
+                {new Date(item.date).toLocaleString('en-GB', {
+                    dateStyle: 'medium',
+                    timeStyle: 'short',
+                  })}
+              </option>
+            ))}
+          </select> 
       </div>
     </div>  
   );
 };
 
-export default EmployeesImportToolBar;
+export default EmployeesImportHistoryToolBar;

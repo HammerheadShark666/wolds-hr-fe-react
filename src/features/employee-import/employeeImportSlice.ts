@@ -22,6 +22,8 @@ interface EmployeeImportState {
  // employeesImported: Employee[];
   employeeImportId: number | null;
   employeesErrorImporting: string[]; 
+
+  employeeImportHistory: { id: number, date: string }[]; // Array of objects with id and date
   //totalPages: number;
   ///totalImportedEmployees: number;
   //page: number;
@@ -57,6 +59,8 @@ importedEmployees: {
  // importedEmloyees: [],
   //existingEmployees: [],
   //employeesImported: [],
+
+  employeeImportHistory: [],
 
   employeeImportId: null,
   employeesErrorImporting: [],
