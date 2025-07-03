@@ -34,12 +34,12 @@ const EmployeesToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopU
   } 
 
   useEffect(() => {
-    document.getElementById('search')?.focus();
+    document.getElementById('search')?.focus(); 
   });
 
-   const departments = useSelector((state: RootState) =>
-      state.department.departments
-    );
+  const departments = useSelector((state: RootState) =>
+    state.department.departments
+  );
 
   return (
     <div className={styles["employee-list-header"]}>

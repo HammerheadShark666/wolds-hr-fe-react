@@ -1,6 +1,7 @@
 import employeeReducer from '../features/employee/employeeSlice';
 import employeeListReducer from '../features/employee/employeeListSlice';
 import employeeImportReducer from '../features/employee-import/employeeImportSlice';
+import employeeImportHistoryReducer from '../features/employee-import-history/employeeImportHistorySlice';
 import departmentReducer from '../features/department/departmentSlice';
 import authenticationReducer from '../features/authentication/authenticationSlice';
 import { configureStore } from '@reduxjs/toolkit';
@@ -11,6 +12,7 @@ export const store = configureStore({
     employee: employeeReducer,
     employeeList: employeeListReducer,
     employeeImport: employeeImportReducer,
+    employeeImportHistory: employeeImportHistoryReducer,
     department: departmentReducer,
     authentication: authenticationReducer
   },
