@@ -25,18 +25,18 @@ const EmployeesImportContainer = () => {
   const [showEmployeePopUpForm, setShowEmployeePopUpForm] = useState(false);
  
   const handleSearch = (importDate: string) => { 
-   if(importDate !== null) {
-      dispatch(setImportSearchDate(importDate));
-      if(employeeImportId !== null) {
-        dispatch(getImportedEmployee({ page: 1, id: employeeImportId, pageSize: pageSize }));
-        dispatch(getImportedExistingEmployee({ id: employeeImportId, page: 1, pageSize: pageSize }));
-      } 
-    } else {
-      dispatch(clearImportedEmployees());
-    }
+  //  if(importDate !== null) {
+  //     dispatch(setImportSearchDate(importDate));
+  //     if(employeeImportId !== null) {
+  //       dispatch(getImportedEmployee({ page: 1, id: employeeImportId, pageSize: pageSize }));
+  //       dispatch(getImportedExistingEmployee({ id: employeeImportId, page: 1, pageSize: pageSize }));
+  //     } 
+  //   } else {
+  //     dispatch(clearImportedEmployees());
+  //   }
   };
 
-  const handlePageChangeIportedEmployees = async (pageNumber: number) => {
+  const handlePageChangeImportedEmployees = async (pageNumber: number) => {
     dispatch(setImportedEmployeesPage(pageNumber)); 
     if(employeeImportId !== null) {
       await dispatch(getImportedEmployee({ page: pageNumber, id: employeeImportId, pageSize: pageSize })); 
@@ -65,7 +65,7 @@ const EmployeesImportContainer = () => {
               </TabsList>
               <TabsContent value="imported-employees">
                 <EmployeesTable setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} rows={importedEmployees.employees} />
-                <Pagination totalPages={importedEmployees.totalPages} totalRecords={importedEmployees.totalEmployees} currentPage={importedEmployees.page} onPageChange={handlePageChangeIportedEmployees} title={"Imported Employees"} />
+                <Pagination totalPages={importedEmployees.totalPages} totalRecords={importedEmployees.totalEmployees} currentPage={importedEmployees.page} onPageChange={handlePageChangeImportedEmployees} title={"Imported Employees"} />
               </TabsContent>
               <TabsContent value="existing-employees">
                 <EmployeesTable setShowEmployeePopUpForm={setShowEmployeePopUpForm} showEmployeePopUpForm={showEmployeePopUpForm} rows={importedExistingEmployees.employees} />

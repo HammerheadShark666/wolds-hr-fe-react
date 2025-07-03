@@ -5,3 +5,9 @@
 .employee-import-tab {
     margin-right: 5px;
 }
+
+.employee-import-tab[aria-selected="true"] {
+  color: #e4fb00; /* or any highlight color you want */
+  background-color: #333; /* example background */
+  font-weight: bold;
+}

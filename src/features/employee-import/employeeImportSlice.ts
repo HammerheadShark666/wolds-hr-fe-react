@@ -87,6 +87,9 @@ const employeeImportSlice = createSlice({
     setImportedExistingEmployeesPage(state, action: PayloadAction<number>) {
       state.importedExistingEmployees.page = action.payload;
     },
+    setEmployeeImportId(state, action: PayloadAction<number>) {
+      state.employeeImportId = action.payload;
+    },
     clearValidationError: (state) => {
       state.error = null;
     },
@@ -191,5 +194,5 @@ const employeeImportSlice = createSlice({
   },
 });
 
-export const { clearImportedEmployees, setImportSearchDate, setImportedEmployeesPage, setImportedExistingEmployeesPage, clearValidationError } = employeeImportSlice.actions
+export const { clearImportedEmployees, setEmployeeImportId, setImportSearchDate, setImportedEmployeesPage, setImportedExistingEmployeesPage, clearValidationError } = employeeImportSlice.actions
 export default employeeImportSlice.reducer;
