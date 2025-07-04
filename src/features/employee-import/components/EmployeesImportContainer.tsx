@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from '../../../app/store';
 import EmployeesImportToolBar from './EmployeesImportToolBar';
 import { setImportedEmployeesPage, setImportedExistingEmployeesPage, clearValidationError } from '../employeeImportSlice';
 import { getImportedEmployee, getImportedExistingEmployee } from '../employeeImportThunks';
-import Pagination from '../../../components/Pagination';
+import Pagination from '../../../components/EmployeePagination';
 import EmployeesTable from '../../../components/EmployeesTable';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@radix-ui/react-tabs';
 import styles from "../css/Employee-import.module.css"; 

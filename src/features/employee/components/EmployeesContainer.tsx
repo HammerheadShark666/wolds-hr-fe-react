@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from '../../../app/store';
 import EmployeesToolBar from './EmployeesToolBar'; 
 import { clearEmployees, setPage, setSearch } from '../employeeSearchSlice'; 
 import { searchEmployeeRecords } from '../employeeThunks';
-import Pagination from '../../../components/Pagination';
+import Pagination from '../../../components/EmployeePagination';
 import EmployeesTable from '../../../components/EmployeesTable';
 
 const EmployeesContainer = () => {

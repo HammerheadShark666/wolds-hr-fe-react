@@ -3,7 +3,7 @@ import EmployeesImportHistoryToolBar from "./EmployeesImportHistoryToolBar";
 import ToastErrors from "../../../components/ErrorToasts";
 import { clearImportedEmployeesHistory, clearValidationError, setEmployeeImportHistoryDate, setEmployeeImportId, setImportedEmployeesHistoryPage, setImportedExistingEmployeesHistoryPage } from "../../employee-import-history/employeeImportHistorySlice";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
-import Pagination from "../../../components/Pagination";
+import Pagination from "../../../components/EmployeePagination";
 import EmployeesTable from "../../../components/EmployeesTable";
 import { AppDispatch, RootState } from "../../../app/store";
 import { useDispatch, useSelector } from "react-redux";

@@ -7,7 +7,7 @@ type Props = {
   title: string;
 };
   
-const Pagination = ({ pagedEmployees, onPageChange, title }: Props) => {
+const EmployeePagination = ({ pagedEmployees, onPageChange, title }: Props) => {
   
   return (
     <>
@@ -37,4 +37,4 @@ const Pagination = ({ pagedEmployees, onPageChange, title }: Props) => {
   );
 };
   
-export default Pagination;  
+export default EmployeePagination;  
