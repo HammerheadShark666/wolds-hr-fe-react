@@ -1,22 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Employee } from '../../types/employee';
 import axiosInstance from '../../api/axiosInstance'; 
 import { handleError } from '../../helpers/errorHandlingHelper';
+import { ApiEmployeePagingResponse, ApiExistingEmployeePagingResponse } from '../../types/employeeImported';
  
-type ApiEmployeePagingResponse = {
-  employees: Employee[]
-  page: number
-  totalPages: number
-  totalEmployees: number
-}  
-
-type ApiExistingEmployeePagingResponse = {
-  existingEmployees: Employee[]
-  page: number
-  totalPages: number
-  totalEmployees: number
-}  
-
 export const importEmployees = createAsyncThunk('employee/import',
   async ({ file }: { file: File }, { rejectWithValue, dispatch }) => {
   
@@ -68,16 +54,3 @@ export const getImportedExistingEmployee = createAsyncThunk<ApiExistingEmployeeP
       return handleError(error, rejectWithValue); 
     }
 });
-  
-// export const searchImportedEmployees = createAsyncThunk<ApiEmployeePagingResponse, { importDate: string; page: number, pageSize: number }>
-//   ('search/searchImportedRecords', async ({ importDate, page, pageSize } , { rejectWithValue }) => {
-//     try     
-//     {
-//       const response = await axiosInstance.get(`/employees/imported?importDate=${importDate.split('T')[0]}&page=${page}&pageSize=${pageSize}`)
-//       return response.data;
-//     } 
-//     catch (error: any) 
-//     { 
-//       return handleError(error, rejectWithValue); 
-//     }
-// });

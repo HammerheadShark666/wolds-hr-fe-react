@@ -1,10 +1,15 @@
+//A html table that displays a list of employees with options to edit or delete each employee.
+// It also includes a popup form for adding or updating employee details.
+// The table is styled with CSS modules and uses React hooks for state management and side effects.
+// The component is used in multiple places in the application, allowing for a consistent employee management interface.
+
 import { useEffect, useRef, useState } from "react"; 
 import { useDispatch, useSelector } from "react-redux"; 
 import styles from "./css/EmployeesTable.module.css";    
 import { Employee } from "../types/employee";
 import { AppDispatch, RootState } from "../app/store";
 import EmployeePhoto from "./EmployeePhoto";
-import EmployeePopupForm from "../features/employee/components/employeeForm/EmployeePopupForm";
+import EmployeePopupForm from "../features/employee/components/EmployeePopupForm";
 import { deleteEmployee } from "../features/employee/employeeThunks";
 import { setSelectedEmployee } from "../features/employee/employeeSlice";
 

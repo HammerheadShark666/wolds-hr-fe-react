@@ -30,9 +30,9 @@
   align-items: center;
 }
 
-label {
+/* label {
   font-weight: bold;
-}
+} */
 
 input {
   padding: 0.5rem;

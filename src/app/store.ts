@@ -1,5 +1,5 @@
 import employeeReducer from '../features/employee/employeeSlice';
-import employeeListReducer from '../features/employee/employeeListSlice';
+import employeeListReducer from '../features/employee/employeeSearchSlice';
 import employeeImportReducer from '../features/employee-import/employeeImportSlice';
 import employeeImportHistoryReducer from '../features/employee-import-history/employeeImportHistorySlice';
 import departmentReducer from '../features/department/departmentSlice';

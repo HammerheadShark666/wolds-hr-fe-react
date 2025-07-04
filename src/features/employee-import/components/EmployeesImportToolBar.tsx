@@ -5,12 +5,11 @@ import { AppDispatch } from '../../../app/store';
 import { importEmployees } from '../../employee-import/employeeImportThunks';
 
 type Props = {
-  onSearch: (importDate: string) => void;
   setShowEmployeePopUpForm: React.Dispatch<React.SetStateAction<boolean>>;  
   showEmployeePopUpForm: boolean;  
 };
 
-const EmployeesImportToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopUpForm }: Props) => {
+const EmployeesImportToolBar = ({ setShowEmployeePopUpForm, showEmployeePopUpForm }: Props) => {
  
   const dispatch = useDispatch<AppDispatch>(); 
   const fileInputRef = useRef<HTMLInputElement>(null); 

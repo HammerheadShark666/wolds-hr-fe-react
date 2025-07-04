@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'; 
 import { AppDispatch, RootState } from '../../app/store';  
 import { login } from './authenticationThunk';
-import { LoginRequest } from '../../types/loginRequest';
+import { LoginRequest } from '../../types/request/loginRequest';
 import { clearValidationErrors } from './authenticationSlice';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useForm } from 'react-hook-form';

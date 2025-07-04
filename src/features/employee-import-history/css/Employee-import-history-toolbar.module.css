@@ -1,0 +1,15 @@
+.toolbar-title {
+  display: flex;
+  gap: 0.5rem;
+  align-items: start;
+  flex-direction: column;
+  width: 70%; 
+  font-size: 1.5rem;
+}
+
+.select {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 150px;
+}

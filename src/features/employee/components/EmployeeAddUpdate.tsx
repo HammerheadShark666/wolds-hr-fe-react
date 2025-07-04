@@ -1,23 +1,23 @@
 import React, { useEffect } from "react";
-import { useAppDispatch } from "../../../../app/hooks";  
-import { RootState } from "../../../../app/store";
+import { useAppDispatch } from "../../../app/hooks";  
+import { RootState } from "../../../app/store";
 import { useSelector } from "react-redux";
-import { addEmployee, updateEmployee } from "../../employeeThunks"; 
+import { addEmployee, updateEmployee } from "../employeeThunks"; 
 import { z } from 'zod';
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
-import { employeeSchema } from "../../validation/employeeSchema";
+import { employeeSchema } from "../validation/employeeSchema";
 import { unwrapResult } from "@reduxjs/toolkit";
-import { clearValidationErrors, setSelectedEmployee } from "../../employeeSlice"; 
-import InputText from "../../../../components/InputText";
-import InputEmail from "../../../../components/InputEmail";
-import InputDate from "../../../../components/InputDate";
-import InputSelect from "../../../../components/InputSelect";
-import styles from "../../../employee/css/Employee-form.module.css"; 
+import { clearValidationErrors, setSelectedEmployee } from "../employeeSlice"; 
+import InputText from "../../../components/InputText";
+import InputEmail from "../../../components/InputEmail";
+import InputDate from "../../../components/InputDate";
+import InputSelect from "../../../components/InputSelect";
+import styles from "../../employee/css/Employee-form.module.css"; 
 import { toast } from "react-toastify";
-import { Employee } from "../../../../types/employee";
-import { updateEmployeesState } from "../../employeeListSlice";
-import ToastErrors from "../../../../components/ErrorToasts";
+import { Employee } from "../../../types/employee";
+import { updateEmployeesState } from "../employeeSearchSlice";
+import ToastErrors from "../../../components/ErrorToasts";
   
 type FormData = z.infer<typeof employeeSchema>;
 

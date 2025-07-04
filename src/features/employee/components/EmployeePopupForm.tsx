@@ -1,6 +1,6 @@
 import React from "react";
 import EmployeeAddUpdate from "./EmployeeAddUpdate";
-import styles from "../../../employee/css/Employee-form.module.css";
+import styles from "../../employee/css/Employee-form.module.css";
 
 interface IProps {
   setShowEmployeePopUpForm: React.Dispatch<React.SetStateAction<boolean>>;
