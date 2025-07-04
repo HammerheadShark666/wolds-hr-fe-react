@@ -18,11 +18,4 @@
 .search-bar button:hover {
   background-color: rgba(207, 179, 199, 0.97);  
   cursor: pointer;
-}     
-
-.select {
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  width: 130px;
 }

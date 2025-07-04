@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import styles from "../../css/Employee-list-toolbar.module.css";
-import globals from "../../../../components/css/Toolbar.module.css"
+import styles from "../css/Employee-list-toolbar.module.css";
+import globals from "../../../components/css/Toolbar.module.css"
 import { Search } from 'lucide-react';
-import EmployeePopupForm from '../employeeForm/EmployeePopupForm';
-import { setSelectedEmployee } from '../../employeeSlice';
+import EmployeePopupForm from './EmployeePopupForm';
+import { setSelectedEmployee } from '../employeeSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../../app/store';  
+import { AppDispatch, RootState } from '../../../app/store';  
 
 type Props = {
   onSearch: (keyword: string, departmentId: string) => void;
@@ -48,7 +48,7 @@ const EmployeesToolBar = ({ onSearch, setShowEmployeePopUpForm, showEmployeePopU
          <span>Employees</span>
         </div>
         <div className={styles["search-bar"]}> 
-          <select id="department" value={searchDepartment} onChange={handleChange} className={styles["select"]}>
+          <select id="department" value={searchDepartment} onChange={handleChange} className={globals["select"]}>
             <option value="0">Select</option>
             {departments.map((item) => (
               <option key={item.id} value={item.id}>

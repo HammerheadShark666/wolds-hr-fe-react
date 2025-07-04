@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Employee } from '../../types/employee';
 import axiosInstance from '../../api/axiosInstance'; 
-import { updateEmployeeInEmployees, addEmployeeToEmployees, updateEmployeePhotoInEmployees, removeEmployeeFromEmployees } from '../employee/employeeListSlice'
+import { updateEmployeeInEmployees, addEmployeeToEmployees, updateEmployeePhotoInEmployees, removeEmployeeFromEmployees } from './employeeSearchSlice'
 import { handleError } from '../../helpers/errorHandlingHelper';
  
 type ApiEmployeePagingResponse = {

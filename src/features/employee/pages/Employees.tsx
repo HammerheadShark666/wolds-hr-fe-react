@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import EmployeesContainer from "../components/employeesList/EmployeesContainer";
+import EmployeesContainer from "../components/EmployeesContainer";
 import styles from "../css/Employee.module.css";
 import { fetchDepartments } from "../../department/departmentThunks";
 import { useAppDispatch } from "../../../app/hooks";
