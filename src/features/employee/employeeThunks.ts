@@ -12,10 +12,15 @@ type ApiEmployeePagingResponse = {
 } 
 
 export const searchEmployeeRecords = createAsyncThunk<ApiEmployeePagingResponse, { keyword: string; departmentId: string, page: number, pageSize: number }>
-  ('search/searchRecords', async ({ keyword, departmentId, page, pageSize } , { rejectWithValue }) => {
+('search/searchRecords', async ({ keyword, departmentId, page, pageSize } , { rejectWithValue }) => {
     try     
     {
-      const response = await axiosInstance.get(`/employees/search?keyword=${keyword}&departmentId=${departmentId}&page=${page}&pageSize=${pageSize}`)
+      let url = `/employees/search?keyword=${keyword}&departmentId=${departmentId}&page=${page}&pageSize=${pageSize}`;
+
+      if(departmentId === '0')
+        url = `/employees/search?keyword=${keyword}&page=${page}&pageSize=${pageSize}`;
+
+      const response = await axiosInstance.get(url)
       return response.data;
     } 
     catch (error: any) 

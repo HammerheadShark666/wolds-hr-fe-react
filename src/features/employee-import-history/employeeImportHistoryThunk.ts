@@ -16,7 +16,7 @@ export const getImportedEmployeeHistory = createAsyncThunk<EmployeeImportHistory
     }
 }); 
 
-export const getImportedEmployeesHistory = createAsyncThunk<ApiEmployeePagingResponse, { id: number, page: number, pageSize: number }>
+export const getImportedEmployeesHistory = createAsyncThunk<ApiEmployeePagingResponse, { id: string, page: number, pageSize: number }>
   ('get/imported/employees/history', async ({ id, page, pageSize } , { rejectWithValue }) => {
     try     
     {
@@ -29,7 +29,7 @@ export const getImportedEmployeesHistory = createAsyncThunk<ApiEmployeePagingRes
     }
 });
 
-export const getImportedExistingEmployeesHistory = createAsyncThunk<ApiExistingEmployeePagingResponse, { id: number, page: number, pageSize: number }>
+export const getImportedExistingEmployeesHistory = createAsyncThunk<ApiExistingEmployeePagingResponse, { id: string, page: number, pageSize: number }>
   ('get/imported/existing-employees/history', async ({ id, page, pageSize } , { rejectWithValue }) => {
     try     
     {

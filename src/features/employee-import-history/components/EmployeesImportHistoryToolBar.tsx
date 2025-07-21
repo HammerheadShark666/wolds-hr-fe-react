@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux';
 import {  RootState } from '../../../app/store'; 
 
 type Props = {
-  onSelectChange: (employeeImportHistoryId: number, employeeImportHistoryDate: string) => void; 
-  employeeImportHistoryId: number;
+  onSelectChange: (employeeImportHistoryId: string | null, employeeImportHistoryDate: string) => void; 
+  employeeImportHistoryId: string | null;
 }; 
 
 const EmployeesImportHistoryToolBar = ({ onSelectChange, employeeImportHistoryId }: Props) => {
  
   const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onSelectChange(e.target.value ? parseInt(e.target.value) : 0, e.target.options[e.target.selectedIndex].text ? e.target.options[e.target.selectedIndex].text : "");
+    onSelectChange(e.target.value ? e.target.value : '0', e.target.options[e.target.selectedIndex].text ? e.target.options[e.target.selectedIndex].text : "");
   };
 
   const importEmployeeHistory = useSelector((state: RootState) =>
@@ -40,7 +40,7 @@ const EmployeesImportHistoryToolBar = ({ onSelectChange, employeeImportHistoryId
       <div className={globals["toolbar-buttons"]}>    
         <div> 
           <label htmlFor="import-history" className={globals["toolbar-label"]}>Import History</label>
-          <select id="import-history" value={importEmployeeHistoryId} onChange={handleChange} className={styles["select"]} >
+          <select id="import-history" value={importEmployeeHistoryId === null ? '0' : importEmployeeHistoryId} onChange={handleChange} className={styles["select"]} >
               <option value="0">Select</option>
               {importEmployeeHistory.map((item) => (
                 <option key={item.id} value={item.id}>

@@ -1,37 +1,16 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": [
-      "/static/*",
-      "/assets/*"
-    ]
+    "exclude": ["/static/*", "/assets/*"]
   },
-  "routes": [
+  "routes": [ 
     {
       "route": "/login",
-      "allowedRoles": [
-        "anonymous"
-      ],
-      "headers": {
-        "Cache-Control": "no-store"
-      }
+      "allowedRoles": ["anonymous"]
     },
     {
       "route": "/*",
-      "allowedRoles": [
-        "anonymous"
-      ]
+      "allowedRoles": ["anonymous"]
     }
-  ],
-  "auth": {
-    "rolesSource": " ",
-    "identityProviders": {
-      "github": {
-        "registration": {
-          "clientIdSettingName": "GITHUB_CLIENT_ID",
-          "clientSecretSettingName": "GITHUB_CLIENT_SECRET_APP_SETTING_NAME"
-        }
-      }
-    }
-  }
+  ]
 }

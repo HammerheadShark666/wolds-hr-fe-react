@@ -12,7 +12,7 @@ const EmployeePagination = ({ pagedEmployees, onPageChange, title }: Props) => {
   return (
     <>
       <div className={pagedEmployees.totalPages === 0 ? styles["pagination-container-no-records"] : styles["pagination-container-no-records-hide"]}>
-      <span>No {title}</span>
+        <span>No {title}</span>
       </div>
       <div className={pagedEmployees.totalPages > 0 ? styles["pagination-container"] : styles["pagination-container-hide"]}>
         <div className={styles["left-group"]}>
