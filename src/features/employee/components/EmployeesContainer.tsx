@@ -21,11 +21,11 @@ const EmployeesContainer = () => {
 
     if(departmentId !== '') {
        setDepartmentId(departmentId);
-    }
+    } 
 
     if(keyword !== '' || departmentId !== '0') {
       dispatch(setSearch(keyword));
-      dispatch(searchEmployeeRecords({ page: 1, keyword: keyword, departmentId: departmentId, pageSize: pageSize }));
+      dispatch(searchEmployeeRecords({ page: 1, keyword: keyword, departmentId: departmentId , pageSize: pageSize }));
     } else {
       dispatch(clearEmployees());
     } 

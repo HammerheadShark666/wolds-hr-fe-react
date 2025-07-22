@@ -19,7 +19,7 @@ const EmployeesImportHistoryContainer = () => {
   const { importedEmployeesHistory, importedExistingEmployeesHistory, loading, error } = useSelector((state: RootState) => state.employeeImportHistory);
   const [activeTab, setActiveTab] = useState("imported-employees-history");
   
-  const [employeeImportHistoryId, setEmployeeImportHistoryId] = useState(0); 
+  const [employeeImportHistoryId, setEmployeeImportHistoryId] = useState<string | null>(null); 
 
   useEffect(() => {
     document.getElementById('import-history')?.focus();
@@ -27,9 +27,9 @@ const EmployeesImportHistoryContainer = () => {
   }, [dispatch]);
    
   const handleOnSelectChange = useCallback(
-    async (employeeImportHistoryId: number, employeeImportHistoryDate: string) => {
+    async (employeeImportHistoryId: string | null, employeeImportHistoryDate: string) => {
 
-      if(employeeImportHistoryId === 0) {
+      if(employeeImportHistoryId === null) {
         dispatch(clearImportedEmployeesHistory());
       }
       else {
@@ -45,14 +45,14 @@ const EmployeesImportHistoryContainer = () => {
 );
   
   const handlePageChangeIportedEmployees = async (pageNumber: number) => {
-    if(employeeImportHistoryId !== null && employeeImportHistoryId > 0 ) { 
+    if(employeeImportHistoryId !== null ) { 
       dispatch(setImportedEmployeesHistoryPage(pageNumber));
       await dispatch(getImportedEmployeesHistory({ page: pageNumber, id: employeeImportHistoryId, pageSize: pageSize })); 
     }
   };
 
   const handlePageChangeImportedExistingEmployees = async (pageNumber: number) => {
-    if(employeeImportHistoryId !== null && employeeImportHistoryId > 0 ) { 
+    if(employeeImportHistoryId !== null ) { 
       dispatch(setImportedExistingEmployeesHistoryPage(pageNumber)); 
       dispatch(getImportedExistingEmployeesHistory({ id: employeeImportHistoryId, page: pageNumber, pageSize: pageSize }));
     }

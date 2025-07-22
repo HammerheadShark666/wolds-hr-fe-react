@@ -4,7 +4,7 @@ import { EmployeeImportHistory, PagedEmployees } from "../../types/employeeImpor
  
 interface EmployeeImportHistoryState { 
   employeeImportHistory: EmployeeImportHistory[];
-  employeeImportHistoryId: number;
+  employeeImportHistoryId: string | null;
   employeeImportHistoryDate: string | null;  
   importedEmployeesHistory: PagedEmployees;
   importedExistingEmployeesHistory: PagedEmployees;  
@@ -28,7 +28,7 @@ const initialState: EmployeeImportHistoryState = {
     totalEmployees: 0,
   }, 
   importedEmployeesErrorHistory: [], 
-  employeeImportHistoryId: 0,
+  employeeImportHistoryId: null,
   employeeImportHistoryDate: null, 
   loading: false,
   error: null,
@@ -47,7 +47,7 @@ const employeeImportHistorySlice = createSlice({
     setImportedExistingEmployeesHistoryPage(state, action: PayloadAction<number>) {
       state.importedExistingEmployeesHistory.page = action.payload;
     },
-    setEmployeeImportId(state, action: PayloadAction<number>) {
+    setEmployeeImportId(state, action: PayloadAction<string>) {
       state.employeeImportHistoryId = action.payload;
     },
     clearValidationError: (state) => {
@@ -66,7 +66,7 @@ const employeeImportHistorySlice = createSlice({
         totalPages: 0,
         totalEmployees: 0,
       }; 
-      state.employeeImportHistoryId = 0;
+      state.employeeImportHistoryId = null;
       state.employeeImportHistoryDate = null; 
     },
   },

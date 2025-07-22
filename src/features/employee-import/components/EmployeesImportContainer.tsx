@@ -21,14 +21,14 @@ const EmployeesImportContainer = () => {
   const [showEmployeePopUpForm, setShowEmployeePopUpForm] = useState(false);
   
   const handlePageChangeImportedEmployees = async (pageNumber: number) => {
-    if(employeeImportId !== null && employeeImportId > 0 ) { 
+    if(employeeImportId !== null ) { 
       dispatch(setImportedEmployeesPage(pageNumber)); 
       await dispatch(getImportedEmployee({ page: pageNumber, id: employeeImportId, pageSize: pageSize })); 
     }
   };
 
   const handlePageChangeImportedExistingEmployees = async (pageNumber: number) => {
-    if(employeeImportId !== null && employeeImportId > 0 ) { 
+    if(employeeImportId !== null ) { 
       dispatch(setImportedExistingEmployeesPage(pageNumber));     
       await dispatch(getImportedExistingEmployee({ id: employeeImportId, page: pageNumber, pageSize: pageSize }));
     }
