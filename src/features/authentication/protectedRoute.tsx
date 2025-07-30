@@ -13,8 +13,20 @@ export default function ProtectedRoute() {
   useEffect(() => {
     dispatch(checkAuthentication());
   }, [dispatch, location.pathname]);
+
+    // const isPublicRoute = location.pathname.startsWith('/login');
+
+    // useEffect(() => {
+    //   if (!isPublicRoute) {
+    //     dispatch(checkAuthentication());
+    //   }
+    // }, [dispatch, isPublicRoute]);
  
-  if (user === null) return <Navigate to="/login" />;
+    if (user === null) return <Navigate to="/login" />;
+
+
+
+
 
   return <Outlet />;
 }

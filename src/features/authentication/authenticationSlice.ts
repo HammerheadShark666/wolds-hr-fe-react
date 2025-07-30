@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { checkAuthentication, login } from './authenticationThunk';  
 
 interface AuthenticationState {  
-  profile: { firstName: string; lastName: string; email: string; } | null;
+  profile: { firstName: string; lastName: string; username: string; } | null;
   status: string;
   loading: boolean;
   error: string | null;

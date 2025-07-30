@@ -1,10 +1,10 @@
 import { z } from "zod"; 
 
 export const authenticationSchema = z.object({ 
-  email: z
+  username: z
     .string()
-    .min(0).max(250, { message: 'Email must be less than or equal to 250 characters' })
-    .email({ message: "Invalid email address" }),
+    .min(0).max(250, { message: 'Username must be less than or equal to 250 characters' })
+    .email({ message: "Invalid username" }),
    password: z
    .string()
    .min(8, { message: 'Password must be greater than or equal to 8 characters' })
