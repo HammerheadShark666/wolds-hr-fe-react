@@ -5,9 +5,7 @@ import { LoginRequest } from '../../types/request/loginRequest';
 import { handleError } from '../../helpers/errorHandlingHelper';
 import axios from 'axios';
  
-export const login = createAsyncThunk('auth/login',
-  async (loginRequest: LoginRequest, { rejectWithValue, dispatch }) => {
-
+export const login = createAsyncThunk('auth/login', async (loginRequest: LoginRequest, { rejectWithValue, dispatch }) => {
   try 
   { 
     const response = await axiosInstance.post<LoginResponse>('/login', loginRequest); 
@@ -19,17 +17,13 @@ export const login = createAsyncThunk('auth/login',
   }
 });  
 
-export const checkAuthentication = createAsyncThunk('auth/me', async (_, thunkAPI) => {
- // return await axiosInstance.get('/authentication/me').then(res => res.data);
-
+export const checkAuthentication = createAsyncThunk('auth/me', async (_, thunkAPI) => { 
   try {
       return await axiosInstance.get('/authentication/me').then(res => res.data);       
-    } catch (error: any) {
-      // If access token expired or 401, try to refresh token
+    } catch (error: any) { 
       if (error.response?.status === 401 || error.response?.status === 403) {
         try {
-          await thunkAPI.dispatch(refreshToken()).unwrap();
-          // Retry original request after successful refresh
+          await thunkAPI.dispatch(refreshToken()).unwrap(); 
           const retryResponse = await axios.get('/api/v1/authentication/me', { withCredentials: true });
           return retryResponse.data;
         } catch {
@@ -38,33 +32,7 @@ export const checkAuthentication = createAsyncThunk('auth/me', async (_, thunkAP
       }
       return thunkAPI.rejectWithValue('Not authenticated');
     }
-});
-
- 
-// export const checkAuthentication = createAsyncThunk(
-//   'auth/checkAuthentication',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get('/api/v1/authentication/me', { withCredentials: true });
-//       return response.data; // user profile
-//     } catch (error: any) {
-//       // If access token expired or 401, try to refresh token
-//       if (error.response?.status === 401 || error.response?.status === 403) {
-//         try {
-//           await thunkAPI.dispatch(refreshToken()).unwrap();
-//           // Retry original request after successful refresh
-//           const retryResponse = await axios.get('/api/v1/authentication/me', { withCredentials: true });
-//           return retryResponse.data;
-//         } catch {
-//           return thunkAPI.rejectWithValue('Not authenticated');
-//         }
-//       }
-//       return thunkAPI.rejectWithValue('Not authenticated');
-//     }
-//   }
-// );
-
-
+}); 
   
 export const refreshToken = createAsyncThunk(
   'auth/refresh',

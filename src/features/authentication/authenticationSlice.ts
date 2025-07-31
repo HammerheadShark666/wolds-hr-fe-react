@@ -50,6 +50,6 @@ const authenticationSlice = createSlice({
       },
   });
   
-  export const { setCredentials, clearValidationErrors } = authenticationSlice.actions; // logout, 
+  export const { setCredentials, clearValidationErrors } = authenticationSlice.actions;
 
   export default authenticationSlice.reducer;
