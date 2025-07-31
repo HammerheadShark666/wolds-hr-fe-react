@@ -23,7 +23,7 @@ export default function LoginForm() {
 
    function populateLoginRequest(data: FormData) : LoginRequest { 
       return {        
-        email: data.email?.trim(),
+        username: data.username?.trim(),
         password: data.password?.trim()
       }  
     }  
@@ -56,9 +56,9 @@ export default function LoginForm() {
           <h2>Login</h2>
           <form onSubmit={handleSubmit(onSubmit)}>  
             <div className={styles["input-group"]}>
-              <label htmlFor="email">Email:</label>
-              <input id="email" autoComplete="email" type="email" {...register("email")} />
-              {errors.email && <span className="error">{errors.email.message}</span>}             
+              <label htmlFor="username">Username:</label>
+              <input id="username" autoComplete="username" type="username" {...register("username")} />
+              {errors.username && <span className="error">{errors.username.message}</span>}             
             </div>
             <div className={styles["input-group"]}>
               <label htmlFor="password">Password:</label>
