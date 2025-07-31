@@ -21,33 +21,7 @@ axiosInstance.interceptors.request.use(
   },
   (error) => Promise.reject(error) 
 ); 
-
-// axiosInstance.interceptors.response.use(
-//   response => response,
-//   async error => {
-//     const originalRequest = error.config;
-//     if (error.response?.status === 401 && !originalRequest._retry) {
-//       originalRequest._retry = true;
-
-//       try 
-//       {     
-//         const { store } = await import('../app/store');
-//         await store.dispatch(refreshToken()); 
-//         return axiosInstance(error.config);
-//       } 
-//       catch 
-//       {
-//         logoutOfApplication();
-//       }     
-//     } 
-//     else if (error.response?.status === 400 && error.response.request.responseURL.includes('/refresh-token')) 
-//     {
-//       logoutOfApplication();
-//     }
-//     return Promise.reject(error);
-//   }
-// );
-
+  
 axiosInstance.interceptors.response.use(
   response => response,
   async error => {
@@ -61,16 +35,16 @@ axiosInstance.interceptors.response.use(
 
       try {
         const { store } = await import('../app/store');
-        await store.dispatch(refreshToken()).unwrap(); // unwrap to catch failure
-        return axiosInstance(originalRequest); // Retry original request
+        await store.dispatch(refreshToken()).unwrap();
+        return axiosInstance(originalRequest);
       } catch (refreshError) {
-        logoutOfApplication(); // Refresh failed
+        logoutOfApplication();
         return Promise.reject(refreshError);
       }
     }
 
     if (isRefreshRequest) {
-      logoutOfApplication(); // If refresh itself fails
+      logoutOfApplication();
     }
 
     return Promise.reject(error);

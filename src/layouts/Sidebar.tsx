@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import styles from "./css/Sidebar.module.css";
-
-// Import Lucide icons
+import styles from "./css/Sidebar.module.css"; 
 import { Home, Users, ImportIcon, LogOut, History } from "lucide-react";
 import { useAppDispatch } from "../app/hooks";
 import { logout } from "../features/authentication/authenticationThunk";
 import { clearEmployees } from "../features/employee/employeeSearchSlice";
 import { clearSelectedEmployee } from "../features/employee/employeeSlice";
-
-// Define icon components per menu item
+ 
 const icons = {
   Home: <Home size={18} />,
   Employees: <Users size={18} />, 
