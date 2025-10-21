@@ -9,7 +9,7 @@ export type Employee =
   hireDate: string | null; 
   phoneNumber: string | null;
   photo: string;
-  departmentId: number | null; 
+  departmentId: string | null; 
   department: Department | null; 
 }
 

@@ -12,15 +12,33 @@ async function logoutOfApplication() {
   window.location.href = '/login';
 }
   
+// axiosInstance.interceptors.request.use(
+//   (config) => {  
+//       if (!(config.data instanceof FormData)) {
+//         config.headers['Content-Type'] = 'application/json';
+//       } 
+//     return config;
+//   },
+//   (error) => Promise.reject(error) 
+// ); 
+
 axiosInstance.interceptors.request.use(
   (config) => {  
-      if (!(config.data instanceof FormData)) {
-        config.headers['Content-Type'] = 'application/json';
-      } 
+    // Only set JSON header if it's not FormData or other file upload types
+    const isFormData = 
+      typeof FormData !== 'undefined' && config.data instanceof FormData;
+
+    if (!isFormData) {
+      config.headers['Content-Type'] = 'application/json';
+    } else {
+      // Let Axios handle the correct multipart boundary
+      delete config.headers['Content-Type'];
+    }
+
     return config;
   },
-  (error) => Promise.reject(error) 
-); 
+  (error) => Promise.reject(error)
+);
   
 axiosInstance.interceptors.response.use(
   response => response,

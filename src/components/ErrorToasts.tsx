@@ -12,10 +12,15 @@ export default function ToastErrors({ errors, error, onClear }: Props) {
   
    useEffect(() => {
 
-    const allErrors = [...(errors || [])];
+    const allErrors = Array.isArray(errors) ? [...errors] : [];
     if (error) {
       allErrors.push(error);
-    } 
+    }
+
+    // const allErrors = [...(errors || [])];
+    // if (error) {
+    //   allErrors.push(error);
+    // } 
 
    allErrors?.forEach((error) => {
       toast.error(error, {

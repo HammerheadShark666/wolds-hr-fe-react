@@ -1,13 +1,13 @@
-import { PagedEmployees } from "../types/importEmployee";
+import { PagedImportErrorEmployees } from "../types/importEmployee";
 import styles from "./css/Pagination.module.css"
 
 type Props = {
-  pagedEmployees: PagedEmployees; 
+  pagedEmployees: PagedImportErrorEmployees; 
   onPageChange: (page: number) => void;
   title: string;
 };
   
-const EmployeePagination = ({ pagedEmployees, onPageChange, title }: Props) => {
+const ImportEmployeesErrorPagination = ({ pagedEmployees, onPageChange, title }: Props) => {
   
   return (
     <>
@@ -37,4 +37,4 @@ const EmployeePagination = ({ pagedEmployees, onPageChange, title }: Props) => {
   );
 };
   
-export default EmployeePagination;  
+export default ImportEmployeesErrorPagination;  

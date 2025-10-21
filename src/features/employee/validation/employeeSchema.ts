@@ -24,8 +24,8 @@ export const employeeSchema = z.object({
     .nullable()   
     .optional(),
   departmentId: z
-   .number()
-   .min(0).max(7, { message: 'Department id not valid' })
+   .string()
+   .uuid({ message: 'Department id not valid' })
    .nullable()
    .optional(), 
    phoneNumber: z

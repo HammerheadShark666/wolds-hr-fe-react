@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { deleteEmployee, searchEmployeeRecords } from './employeeThunks';
-import { Employee } from '../../types/employee'; 
-import { PagedEmployees } from '../../types/employeeImported';
+import { Employee } from '../../types/employee';
+import { PagedEmployees } from '../../types/importEmployee';
 
 interface IUpdatePhotoResponse {
   id: number,
