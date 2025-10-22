@@ -1,0 +1,22 @@
+.employee-import-latest-table tr th {
+  background-color: lightslategrey;  
+  text-align: left;
+  padding: 10px;
+  font-size: smaller;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.employee-import-latest-table tbody tr td {
+  padding: 10px;
+  position: relative; 
+}
+
+.employee-import-latest-table tbody tr:hover {
+  background-color: rgba(207, 179, 199, 0.97);
+  cursor: pointer;
+}
+   
+.employee-import-latest-table-counts {
+  text-align: center;
+}

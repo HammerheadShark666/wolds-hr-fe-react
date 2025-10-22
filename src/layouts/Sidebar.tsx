@@ -36,8 +36,8 @@ const menuItems: MenuItem[] = [
     name: "Employees Import",
     iconname: "EmployeesImport",
     submenu: [
-      { name: "Import", iconname: "ImportIcon", link: "/employees-import" },
-      { name: "History", iconname: "History", link: "/employees-import-history" },
+      { name: "Import", iconname: "ImportIcon", link: "/import-employees" },
+      { name: "History", iconname: "History", link: "/import-employees-history" },
     ],
   },
   { name: "Logout", iconname: "LogOut", link: "/" },

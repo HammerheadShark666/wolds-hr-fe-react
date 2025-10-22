@@ -34,7 +34,7 @@ export const addEmployee = createAsyncThunk('employee/addEmployee',
   
     try     
     { 
-      const response = await axiosInstance.post( '/employees/add', employee);
+      const response = await axiosInstance.post( '/employees/employee', employee);
       dispatch(addEmployeeToEmployees(response.data));
       return response.data; 
     } 
@@ -50,7 +50,7 @@ export const updateEmployee = createAsyncThunk('employee/updateEmployee',
   
     try 
     {      
-      const response = await axiosInstance.put( '/employees/update', employee);
+      const response = await axiosInstance.put( '/employees/employee', employee);
       dispatch(updateEmployeeInEmployees(response.data));
       return response.data; 
     } 
@@ -65,7 +65,7 @@ export const deleteEmployee = createAsyncThunk('employees/deleteEmployee',
   async (employeeId: number, { rejectWithValue, dispatch }) => {
 
     try {          
-      const response = await axiosInstance.delete('/employees/' + employeeId);  
+      const response = await axiosInstance.delete('/employees/employee/' + employeeId);  
       dispatch(removeEmployeeFromEmployees(employeeId));    
       return response.data; 
     } 
@@ -84,7 +84,7 @@ export const updateEmployeePhoto = createAsyncThunk('employee/updateEmployeePhot
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await axiosInstance.post(`/employees/upload-photo/${id}`, formData); 
+      const response = await axiosInstance.post(`/employees/employee/upload-photo/${id}`, formData); 
 
       dispatch(updateEmployeePhotoInEmployees(response.data));
       return response.data; 
